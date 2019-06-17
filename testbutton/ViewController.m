@@ -23,6 +23,18 @@
 
 #import "HLWebViewController.h"
 
+#import "JHCusomHistory.h"
+
+//#if (DEBUG == 1 || TARGET_OS_SIMULATOR)
+//#else
+//#ifdef FILELOG_SUPPORT
+//[self redirectNSlogToDocumentFolder];
+//#endif
+//#endif//```
+
+#define FILELOG_SUPPORT(str) [self redirectNSlogToDocumentFolder:str]
+
+
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -51,7 +63,11 @@
 @property (nonatomic,strong)PlateInputView * plateInput;
 @property (nonatomic,strong)UITextField * plateTextField;
 
-@property (nonatomic ,strong)tabViewSelect *tabViewSelect;
+@property (nonatomic,strong)tabViewSelect *tabViewSelect;
+
+@property (nonatomic,assign) NSInteger tmpFlag;
+
+@property (nonatomic, strong) JHCusomHistory *history;
 @end
 
 @implementation ViewController
@@ -78,29 +94,43 @@
     return _alertVC;
 }
 
+#pragma 历史记录相关
+- (JHCusomHistory *)history{
+    if (!_history) {
+        __weak typeof(self) weakSelf = self;
+        JHCusomHistory *history = [[JHCusomHistory alloc] initWithFrame:CGRectMake(0, 200, 400, 200) maxSaveNum:5 fileName:@"parkingHistorySearch.data" andItemClickBlock:^(NSString *keyword) {
+            NSLog(@"~~~~%@",keyword);
+            
+        }];
+        history.backgroundColor = [UIColor purpleColor];
+        _history = history;
+    }
+    return _history;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIView *loadingView = [[UIView alloc]initWithFrame:CGRectMake(200, 300, 100, 100)];
-    [self.view addSubview:loadingView];
-    self.loadingView = loadingView;
-    loadingView.backgroundColor = [UIColor blueColor];
+//    UIView *loadingView = [[UIView alloc]initWithFrame:CGRectMake(200, 300, 100, 100)];
+//    [self.view addSubview:loadingView];
+//    self.loadingView = loadingView;
+//    loadingView.backgroundColor = [UIColor blueColor];
     
-    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushtoDetailVC:)];
-    tapGesture.numberOfTouchesRequired=1;
-    tapGesture.numberOfTapsRequired=1;
-    tapGesture.delegate = self;
-    [loadingView addGestureRecognizer:tapGesture];
-    
-    UILabel *labtmp = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-    labtmp.textColor = [UIColor redColor];
-    labtmp.font = [UIFont systemFontOfSize:15];
-    labtmp.text = @"我是第一";
-    [self.loadingView addSubview:labtmp];
-    
-    self.title = @"我是第一";
+//    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushtoDetailVC:)];
+//    tapGesture.numberOfTouchesRequired=1;
+//    tapGesture.numberOfTapsRequired=1;
+//    tapGesture.delegate = self;
+//    [loadingView addGestureRecognizer:tapGesture];
+//
+//    UILabel *labtmp = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    labtmp.textColor = [UIColor redColor];
+//    labtmp.font = [UIFont systemFontOfSize:15];
+//    labtmp.text = @"我是第一";
+//    [self.loadingView addSubview:labtmp];
+//
+//    self.title = @"我是第一";
     
     
     _dic = [NSDictionary new];
@@ -108,26 +138,222 @@
     EFButton *btn = [EFButton new];
     [self.view addSubview:btn];
     btn.backgroundColor = [UIColor redColor];
-    btn.frame = CGRectMake(100, 100, 40, 40);
+    btn.frame = CGRectMake(100, 100, 140, 60);
+    btn.center = CGPointMake(100, 100);
     [btn setTitle:@"客服服务" forState:(UIControlStateNormal)];
     [btn setImage:[UIImage imageNamed:@"qwas.png"] forState:(UIControlStateNormal)];
     [btn addTarget:self action:@selector(click:) forControlEvents:(UIControlEventTouchUpInside)];
+    self.tmpFlag = 0;
+    btn.center = CGPointMake(200, 200);
+//    btn.transform = CGAffineTransformMakeRotation(-71.565051);
     
-//    [self recell];
-    
-    
-//    [self.view addSubview:self.textView];
-    
-    
-    UIImageView *imag = [[UIImageView alloc] initWithFrame:CGRectMake(200, 100, 100, 100)];
-    imag.image = [UIImage imageNamed:@"rp"];
-    [self.view addSubview:imag];
-    self.imag = imag;
+//    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(100, 300, 100, 100)];
+//    tmpView.backgroundColor = [UIColor purpleColor];
+//    [self.view addSubview:tmpView];
 //
-//    self.view.backgroundColor = [UIColor blueColor];
+//    tmpView.transform = CGAffineTransformMakeRotation(-70);
     
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"M_sousuokuang"]];
     
+    
+//    //添加历史记录视图
+//    self.history.searchKey = @"45678";
+//    self.history.searchKey = @"sx";
+//    self.history.searchKey = @"2345ydfc";
+//    self.history.searchKey = @"oiudc1234";
+//    self.history.searchKey = @"456yhbcx";
+//
+//    [self.view addSubview:self.history];
+    
+    
+}
+
+-(void)click:(UIButton *)btn{
+    btn.selected = !btn.selected;
+    [self plateNumber];
+    
+    
+//    if (self.tmpFlag > 7) {
+//        self.tmpFlag = 0;
+//    }
+////    double aaa = atan(-1);
+////    double asina = sin(M_PI/6);
+////    NSLog(@"%f ~~~~ %f~~~~%f",aaa,asina,M_PI);
+//
+////    double angle1 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:5];
+////    double angle2 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:3];
+////    double angle3 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:3];
+////    double angle4 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:5];
+////    NSLog(@"第一象限%f~~~第二象限%f~~~~第三象限%f~~~~第四象限%f",angle1,angle2,angle3,angle4);
+//
+////    double angle1 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:5];
+////    double angle2 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:3];
+////    double angle3 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:3];
+////    double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:5];
+////    NSLog(@"第一象限%f~~~第二象限%f~~~~第三象限%f~~~~第四象限%f",angle1,angle2,angle3,angle4);
+//
+//    switch (self.tmpFlag) {
+//        case 0:
+//        {
+//            double angle1 = [self getTanWithLat1:5 whitLng1:4 whitLat2:8 whitLng2:5];
+//            NSLog(@"第一象限%f",angle1);
+//            btn.transform = CGAffineTransformMakeRotation(angle1);
+//        }
+//            break;
+//        case 1:
+//        {
+//            double angle2 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:3];
+//            NSLog(@"第二象限%f",angle2);
+//            btn.transform = CGAffineTransformMakeRotation(angle2);
+//        }
+//            break;
+//        case 2:
+//        {
+//            double angle3 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:3];
+//            NSLog(@"第三象限%f",angle3);
+//            btn.transform = CGAffineTransformMakeRotation(angle3);
+//        }
+//            break;
+//        case 3:
+//        {
+//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:5];
+//            NSLog(@"第四象限%f",angle4);
+//            btn.transform = CGAffineTransformMakeRotation(angle4);
+//        }
+//            break;
+//        case 4:
+//        {
+//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:4];
+//            NSLog(@"y上半轴%f",angle4);
+//            btn.transform = CGAffineTransformMakeRotation(angle4);
+//        }
+//            break;
+//        case 5:
+//        {
+//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:4];
+//            NSLog(@"y下半轴%f",angle4);
+//            btn.transform = CGAffineTransformMakeRotation(angle4);
+//        }
+//            break;
+//        case 6:
+//        {
+//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:5 whitLng2:5];
+//            NSLog(@"x右半轴%f",angle4);
+//            btn.transform = CGAffineTransformMakeRotation(angle4);
+//        }
+//            break;
+//
+//        case 7:
+//        {
+//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:5 whitLng2:3];
+//            NSLog(@"x左半轴%f",angle4);
+//            btn.transform = CGAffineTransformMakeRotation(angle4);
+//        }
+//            break;
+//
+//        default:
+//            break;
+//    }
+//    self.tmpFlag += 1;
+}
+
+
+//使用tan计算两点之间的转角
+-(double)getTanWithLat1:(double)latY1 whitLng1:(double)lngX1 whitLat2:(double)latY2 whitLng2:(double)lngX2{
+    
+    if (latY1 == latY2 && lngX1 == lngX2) {
+        return 0;
+    }
+    
+    //y轴点
+    if (lngX2 == lngX1) {
+        if (latY2 > latY1) {
+            return -90;
+        }else{
+            return 90;
+        }
+    }
+    //x轴点
+    if (latY2 == latY1) {
+        if (lngX2 > lngX1) {
+            return 0;
+        }else{
+            return 180;
+        }
+    }
+    
+    double d = 0;
+    //绝对值
+    double fabs(double d);
+    double X = fabs(lngX2 - lngX1);
+    double Y = fabs(latY2 - latY1);
+    double radian = atan(Y * 1.0 / X);
+    double angle = [self angle:radian];
+    d = angle;
+    
+    if (latY2 > latY1) {
+        if (lngX2 > lngX1) {
+            return -d;
+        }else{
+            return d - 180;
+        }
+    }else{
+        if (lngX2 > lngX1) {
+            return d;
+        }else{
+            return 180 - d;
+        }
+    }
+    return d;
+}
+
+//两个经纬度之间的角度
+-(double)getBearingWithLat1:(double)lat1 whitLng1:(double)lng1 whitLat2:(double)lat2 whitLng2:(double)lng2{
+    
+    double d = 0;
+    double radLat1 =  [self radian:lat1];
+    double radLat2 =  [self radian:lat2];
+    double radLng1 = [self radian:lng1];
+    double radLng2 =  [self radian:lng2];
+    d = sin(radLat1)*sin(radLat2)+cos(radLat1)*cos(radLat2)*cos(radLng2-radLng1);
+    d = sqrt(1-d*d);
+    d = cos(radLat2)*sin(radLng2-radLng1)/d;
+    d = [self angle:asin(d)];
+//    double fabs(double d);
+//    d = fabs(d);
+    //    if(lat2 < lat1){
+    //        d = 180-d;
+    //    }
+    return d;
+}
+//根据角度计算弧度
+-(double)radian:(double)d{
+    return d * M_PI/180.0;
+}
+//根据弧度计算角度
+-(double)angle:(double)r{
+    return r * 180/M_PI;
+}
+#pragma mark - 使用uiview创建image
+- (void)convertCreateImageWithUIView:(UIView *)view{
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(200, 100, 100, 100)];
+    tmpView.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:tmpView];
+    
+    UIImageView *imag = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
+    imag.image = [UIImage imageNamed:@"rp"];
+    [tmpView addSubview:imag];
+    self.imag = imag;
+    self.imag.transform = CGAffineTransformMakeRotation(223);
+    
+    UIImageView *imag1 = [[UIImageView alloc] initWithFrame:CGRectMake(200, 300, 100, 100)];
+    imag1.image = [UIImage imageNamed:@"rp"];
+    [self.view addSubview:imag1];
+    
+    UIGraphicsBeginImageContextWithOptions(tmpView.bounds.size, NO, [UIScreen mainScreen].scale);
+    [tmpView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    imag1.image = viewImage;
 }
 
 
@@ -138,18 +364,97 @@
 }
 
 
--(void)click:(UIButton *)btn{
-    btn.selected = !btn.selected;
-//    threeViewController *vc = [[threeViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
-    HLWebViewController *HLWebvc = [[HLWebViewController alloc] init];
-    NSString *cententStr = @"<p><img src=\"http://47.98.50.57/image-server/advert_photo/DC/61/5617E6A35651BB6C1123BB42632EDC61.jpg\"><br></p>";
-    HLWebvc.html = cententStr;
-//    HLWebvc.url = @"http://47.98.50.57/image-server/advert_photo/DC/61/5617E6A35651BB6C1123BB42632EDC61.jpg";
-    [self.navigationController pushViewController:HLWebvc animated:YES];
+#pragma mark 通过宏调用自定义方法 --- 无参数无返回值的宏，带参数的宏，带返回值的宏，
+- (void)defineFunction{
+    FILELOG_SUPPORT(@"2222");
+    NSString *str = FILELOG_SUPPORT(@"2222");
+    NSLog(@"%@",str);
+}
+
+- (NSString *)redirectNSlogToDocumentFolder:(NSString *)str{
+    NSLog(@"通过宏定义调用自定义的方法~~~~%@",str);
+    NSString *strReturn = @"我是返回值";
+    return strReturn;
+}
+
+
+#pragma mark UIAlertAction颜色修改
+
+- (void)callNumber{
     
+    //    方法一:不弹出提示直接拨打
+    NSMutableString *str=[[NSMutableString alloc]initWithFormat:@"tel:%@",@"113"];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    //    方法二:会弹出提示
+    
+    NSMutableString *str1=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"332"];
+    
+    UIWebView *callWebview = [[UIWebView alloc]init];
+    
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str1]]];
+    
+    [self.view addSubview:callWebview];
+    
+    //    方法三:会弹出提示
+    
+    NSMutableString* str2=[[NSMutableString alloc]initWithFormat:@"telprompt://%@",@"111"];
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:str2]];
+    
+//    方案四之终极拨号方式:
+    
+    NSMutableString *str3 = [[NSMutableString alloc]initWithFormat:@"tel:%@",@"1155"];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"打电话" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"呼叫" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str3]];
+        
+    }];
+    // Add the actions.
+    
+    [alertController addAction:cancelAction];
+    
+    [alertController addAction:otherAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
     
 }
+
+#pragma mark UIAlertAction颜色修改
+- (void)changesystemalertview{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认离开支付？" message:@"你的订单在30分钟内未支付将被取消,请尽快支付" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancleAction = [UIAlertAction actionWithTitle:@"继续支付" style:UIAlertActionStyleDestructive handler:nil];
+    
+    UIAlertAction *quiteAction = [UIAlertAction actionWithTitle:@"确定离开" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    }];
+    
+    /*title*/
+    NSMutableAttributedString *alertTitleStr = [[NSMutableAttributedString alloc] initWithString:@"提示"];
+    [alertTitleStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(0, alertTitleStr.length)];
+    [alertTitleStr addAttribute:NSForegroundColorAttributeName value:[UIColor cyanColor] range:NSMakeRange(0, alertTitleStr.length)];
+    [alertController setValue:alertTitleStr forKey:@"attributedTitle"];
+    
+    /*msg*/
+    NSMutableAttributedString *alertMsgStr = [[NSMutableAttributedString alloc] initWithString:@"修改内容"];
+    [alertMsgStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:20] range:NSMakeRange(0, alertMsgStr.length)];
+    [alertMsgStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, alertMsgStr.length)];
+    [alertController setValue:alertMsgStr forKey:@"attributedMessage"];
+    [quiteAction setValue:[UIColor orangeColor] forKey:@"_titleTextColor"];
+    [cancleAction setValue:[UIColor redColor] forKey:@"_titleTextColor"];
+    
+    [alertController addAction:cancleAction];
+    [alertController addAction:quiteAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 
 #pragma mark TableView单选
 - (void)selectTabViewCell{
@@ -181,33 +486,34 @@
     _plateTextField.layer.borderWidth = 1;
     _plateTextField.keyboardType = UIKeyboardTypeNumberPad;//设置数字键盘防止复制粘贴板自动加空格
     
-    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 200 )];
+//    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 200 )];
     
-    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
-    tmpView.backgroundColor = [UIColor cyanColor];
-    [inputView addSubview:tmpView];
+//    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
+//    tmpView.backgroundColor = [UIColor cyanColor];
+//    [inputView addSubview:tmpView];
     
-    UIButton *but = [[UIButton alloc] initWithFrame:CGRectMake(20, 30, 80, 20)];
-    but.backgroundColor = [UIColor orangeColor];
-    [but addTarget:self action:@selector(btnadd) forControlEvents:(UIControlEventTouchUpInside)];
-    [tmpView addSubview:but];
+//    UIButton *but = [[UIButton alloc] initWithFrame:CGRectMake(20, 30, 80, 20)];
+//    but.backgroundColor = [UIColor orangeColor];
+//    [but addTarget:self action:@selector(btnadd) forControlEvents:(UIControlEventTouchUpInside)];
+//    [tmpView addSubview:but];
+//
+//    _plateTextField.inputView = inputView;
+//    [self.view addSubview:_plateTextField];
     
-    _plateTextField.inputView = inputView;
+    
+    LicensePlateView *carView = [LicensePlateView initFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, (([UIScreen mainScreen].bounds.size.height) / 568) *180) OriginalString:_plateTextField.text block:^(NSString *str) {
+        NSLog(@"str = %@",str);
+        self.plateTextField.text = str;
+        if (str.length == 8) {
+            [self.plateTextField resignFirstResponder];
+        }
+    }];
+    carView.backgroundColor = [UIColor whiteColor];
+    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, (([UIScreen mainScreen].bounds.size.height) / 568) *180)];
+    inputView.backgroundColor = [UIColor greenColor];
+    [inputView addSubview:carView];
+    self.plateTextField.inputView = inputView;
     [self.view addSubview:_plateTextField];
-    
-    
-//    LicensePlateView *carView = [LicensePlateView initFrame:CGRectMake(0, 0, SCREEN_WIDTH, (([UIScreen mainScreen].bounds.size.height) / 568) *180) OriginalString:textField.text block:^(NSString *str) {
-//        NSLog(@"str = %@",str);
-//        textField.text = str;
-//        if (str.length == 8) {
-//            [textField resignFirstResponder];
-//        }
-//    }];
-//    carView.backgroundColor = [UIColor whiteColor];
-//    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, (([UIScreen mainScreen].bounds.size.height) / 568) *180)];
-//    inputView.backgroundColor = [UIColor greenColor];
-//    [inputView addSubview:carView];
-//    textField.inputView = inputView;
     
 }
 
@@ -446,7 +752,14 @@
     
     NSLog(@"%@~~~~~~~~~",selectTure);
     
+//    这样arrayContent过滤出来的就是不包含 arrayFilter中的所有item了。
+    NSArray *arrayFilter = [NSArray arrayWithObjects:@"abc1", @"abc2", nil];
     
+    NSArray *arrayContent = [NSArray arrayWithObjects:@"a1", @"abc1", @"abc4", @"abc2", nil];
+    
+    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)", arrayFilter];
+    
+    NSArray *selectTure22 = [arrayContent filteredArrayUsingPredicate:thePredicate];
     
 //    NSString *a = @"12wertyu";
 //   NSString *b =  [a substringWithRange:NSMakeRange(0, 1)];

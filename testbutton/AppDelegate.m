@@ -17,6 +17,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //制定真机调试保存日志文件
+    [self redirectNSlogToDocumentFolder];
+    
     // Override point for customization after application launch.
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
@@ -28,6 +32,23 @@
     return YES;
 }
 
+#pragma mark - 用户方法,将NSLog的输出信息写入到.log文件中
+// 将NSLog打印信息保存到Document目录下的文件中
+- (void)redirectNSlogToDocumentFolder
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = [paths objectAtIndex:0];
+    NSString *fileName = [NSString stringWithFormat:@"%@.log",[[NSDate alloc] initWithTimeIntervalSinceNow:8*3600]]; // 注意不是NSData!
+    NSString *logFilePath = [documentDirectory stringByAppendingPathComponent:fileName];
+#ifdef DEBUG
+    // 将log输入到文件
+//    "r"表示“只读访问”、"w"表示“只写访问”、"a"表示“追加写入”。
+    freopen([logFilePath cStringUsingEncoding:NSASCIIStringEncoding],"a+",stderr);
+    NSLog(@"~~~~%@",logFilePath);
+#else
+    NSLog(@"~~~~%@",logFilePath);
+#endif
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

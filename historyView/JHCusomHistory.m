@@ -223,22 +223,92 @@
 -(void)saveHistorySearch{
     NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *filePath = [Path stringByAppendingPathComponent:_fileName]; //注：保存文件的扩展名可以任意取，不影响。
-    //    NSLog(@"%@", filePath);
-    //归档
-    [NSKeyedArchiver archiveRootObject:self.historySearchArr toFile:filePath];
+//    //    NSLog(@"%@", filePath);
+//    //归档
+//    //    [NSKeyedArchiver archiveRootObject:self.historySearchArr toFile:filePath];
+//
+//    NSError *error = nil;
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.historySearchArr requiringSecureCoding:NO error:&error];
+//    [data writeToFile:filePath atomically:YES];
+//
+//    if (error) {
+//        NSLog(@"归档失败:%@", error);
+//        return;
+//    }
+    
+    NSArray *arr = @[@"1",@"2",@"3"];
+    
+    NSError *error;
+    NSData *archiverData = [NSKeyedArchiver archivedDataWithRootObject:arr requiringSecureCoding:NO error:&error];
+    if (error) {
+        NSLog(@"Archiver Failed, errorInfo:%@", error);
+    }
+    BOOL isSuccess = [archiverData writeToFile:filePath atomically:YES];
+    if (isSuccess) {
+        NSLog(@"archiver success");
+    }
+    
 }
 
 //历史搜索解档
 -(void)readHistorySearch{
     NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSString *filePath = [Path stringByAppendingPathComponent:_fileName];
-    //解档
-    NSMutableArray<HistorySearchModel *> *personArr = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     
-    self.historySearchArr = [NSMutableArray arrayWithArray:personArr];
-//    self.historyShowSearchArr =[NSMutableArray arrayWithArray:(NSMutableArray *) [[self.historySearchArr reverseObjectEnumerator]allObjects]];
-    [self dealWithData];
+    //读文件
+    NSData *data=[NSData dataWithContentsOfFile:filePath options:0 error:NULL];
+    
+    //解档
+//        NSMutableArray<HistorySearchModel *> *personArr = [NSKeyedUnarchiver unarchivedObjectOfClass:[FLPersion class] fromData:self.archivedData error:&error];
+    
+    
+    
+//    NSError *error = nil;
+////    NSMutableArray<HistorySearchModel *> *personArr = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSMutableArray class] fromData:data error:&error];
+//    NSArray *personArr = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSMutableArray class] fromData:data error:&error];
+//
+//    if (personArr == nil || error) {
+//        NSLog(@"解档失败:%@", error);
+//        return;
+//    }
+    
+    NSError *error;
+    NSArray *personArr = [NSKeyedUnarchiver unarchivedObjectOfClass:[NSArray class] fromData:data error:&error];
+    if (personArr == nil || error) {
+        NSLog(@"解档失败:%@", error);
+    } else {
+        NSLog(@"解档成功:%@",[personArr description]);
+    }
+    
+    
+    
+//    NSLog(@"%@ %ld",personArr,personArr.count);
+    
+//    self.historySearchArr = [NSMutableArray arrayWithArray:personArr];
+    //    self.historyShowSearchArr =[NSMutableArray arrayWithArray:(NSMutableArray *) [[self.historySearchArr reverseObjectEnumerator]allObjects]];
+//    [self dealWithData];
 }
+
+////历史搜索归档
+//-(void)saveHistorySearch{
+//    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSString *filePath = [Path stringByAppendingPathComponent:_fileName]; //注：保存文件的扩展名可以任意取，不影响。
+//    //    NSLog(@"%@", filePath);
+//    //归档
+//    [NSKeyedArchiver archiveRootObject:self.historySearchArr toFile:filePath];
+//}
+//
+////历史搜索解档
+//-(void)readHistorySearch{
+//    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSString *filePath = [Path stringByAppendingPathComponent:_fileName];
+//    //解档
+//    NSMutableArray<HistorySearchModel *> *personArr = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+//
+//    self.historySearchArr = [NSMutableArray arrayWithArray:personArr];
+////    self.historyShowSearchArr =[NSMutableArray arrayWithArray:(NSMutableArray *) [[self.historySearchArr reverseObjectEnumerator]allObjects]];
+//    [self dealWithData];
+//}
 
 //判断搜索记录是否重复后添加
 -(void)addHistoryModelWithText:(NSString *)text andType:(HistorySearchType)type{
