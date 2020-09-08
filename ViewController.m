@@ -25,6 +25,23 @@
 
 #import "JHCusomHistory.h"
 
+#import "ANPopoverView.h"
+
+#import "FDCalendar.h"
+
+#import <objc/message.h>
+
+#pragma mark - 照片浏览器
+#import "HZImagesGroupView.h"
+#import "HZPhotoItemModel.h"
+#import "HZPhotoBrowser.h"
+#import "FSLoopScrollView.h"
+
+
+#import <MediaPlayer/MediaPlayer.h>
+
+#import "SelectLabelShowVC.h"
+
 //#if (DEBUG == 1 || TARGET_OS_SIMULATOR)
 //#else
 //#ifdef FILELOG_SUPPORT
@@ -38,7 +55,7 @@
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
 
-@interface ViewController ()<LGAlertViewDelegate,UITextViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate>
+@interface ViewController ()<LGAlertViewDelegate,UITextViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate,HZPhotoBrowserDelegate>
 
 @property(nonatomic,strong)UIViewController *vc;
 
@@ -68,50 +85,149 @@
 @property (nonatomic,assign) NSInteger tmpFlag;
 
 @property (nonatomic, strong) JHCusomHistory *history;
+
+@property (nonatomic ,strong) FDCalendar *calendar;
+
+@property (nonatomic, strong) NSArray *srcStringArray;
+@property (nonatomic, strong) FSLoopScrollView *loopView;
+
+@property (nonatomic, strong) MPMoviePlayerController *moviePlayerController;
 @end
 
 @implementation ViewController
 
 
-
-- (imagePickerViewController *)imagePickVC{
-    if (!_imagePickVC) {
-        _imagePickVC = [imagePickerViewController new];
-//        _imagePickVC.view.frame = CGRectMake(0, 0, 200,200 );
+//三个参数的方法
+-(void)take:(NSString *)name andAge:(NSString *)age andBlue:(NSString *)color{
+    NSLog(@"%@-%@-%@",name,age,color);
+//    return 7;
+}
+-(void)invocationInstance{
+//    1.通过方法调用者创建方法签名；此方法是NSObject 的方法
+    NSMethodSignature *sig = [[self class] instanceMethodSignatureForSelector:@selector(take:andAge:andBlue:)];
+//    2.通过方法签名 生成NSInvocation
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+//    3.对invocation设置 方法调用者
+    invocation.target = self;
+//    4.对invocation设置 方法选择器
+    invocation.selector = @selector(take:andAge:andBlue:);
+//    5.对invocation设置 参数
+    NSString *name = @"张三";
+    NSString *age = @"20";
+    NSString *color = @"red";
+    //注意：设置的参数必须从2开始；因为0和1 已经被self ,_cmd 给占用了
+    [invocation setArgument:&name atIndex:2];
+    [invocation setArgument:&age atIndex:3];
+    [invocation setArgument:&color atIndex:4];
+//    6.执行invocation
+    [invocation invoke];
+//    7.判断 方法签名 判断是否有返回值
+    const char *sigretun =  sig.methodReturnType; //方法签名的返回值
+    NSUInteger siglength = sig.methodReturnLength; //方法签名返回值长度； 如果是字符串返回8，数字返回4，没有返回值返回0；
+    if (siglength !=0) { //有返回值
+        if (strcmp(sigretun, "@") == 0) {
+            NSString *returnStr;
+            [invocation getReturnValue:&returnStr];
+            NSLog(@"字符串返回值：%@",returnStr);
+        }else if (strcmp(sigretun, "i")){
+            int a = 0;
+            [invocation setReturnValue:&a];
+            NSLog(@"数字返回值：%d",a);
+        }
+    }else{ //没有返回值
+        NSLog(@"没有返回值");
     }
-    return _imagePickVC;
+    
+//    8.常用方法
+    NSUInteger argumentNum = sig.numberOfArguments;
+    NSLog(@"%zd",argumentNum); //参数的个数
+    
+    const char *type = [sig getArgumentTypeAtIndex:3];
+    NSLog(@"方法签名中下标为3的的参数类型:%s",type);
+}
+// 扩展
+//-(id)performSelector:(SEL)aSelector withObjects:(NSArray *)objects{
+//    //生成方法签名
+//    NSMethodSignature *sig = [NSMethodSignature methodSignatureForSelector:aSelector];
+//    if (sig == nil) { //如果方法签名不存在抛出异常
+//        [NSException raise:@"exceptionName" format:@"%@not found method",NSStringFromSelector(aSelector)];
+//    }
+//    //生成invocation
+//    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
+//    invocation.target = self;// 设置调用对象
+//    invocation.selector = aSelector;//设置方法选择器
+//
+//    NSInteger num = sig.numberOfArguments -2; //传递进来的参数个数
+//    NSInteger min = MAX(num, objects.count); //取得参数的数量；
+//    for (int i = 0; i< min; i++) {
+//        id obj = objects[i];
+//        if ([obj isKindOfClass:[NSNull class]]) continue;
+//            //设置参数
+//        [invocation setArgument:&obj atIndex:i+2];
+//
+//    }
+//    //调用方法
+//    [invocation invoke];
+//
+//    //获得返回值
+//    id retrunvalue = nil;
+//    if (sig.methodReturnLength !=0) { //如果有返回值的话，获取返回值
+//        [invocation getReturnValue:&retrunvalue];
+//    }
+//    return retrunvalue;
+//
+//
+//}
+
+- (void)doSomething:(id)index{
+    NSLog(@"%@~~~~~~%@~~~",NSStringFromSelector(_cmd),index);
 }
 
-
-- (alertviewViewController *)alertVC{
-    if (!_alertVC) {
-        _alertVC = [alertviewViewController new];
-        
-        _alertVC.view.frame = CGRectMake(0, 0, 200, 200);
-//        _alertVC.view.backgroundColor = [UIColor redColor];
-//        [self addChildViewController:_alertVC];
-    }
-    return _alertVC;
+- (void)doAnotherThing:(id)index{
+    NSLog(@"%@~~~~~~%@~~~",NSStringFromSelector(_cmd),index);
 }
 
-#pragma 历史记录相关
-- (JHCusomHistory *)history{
-    if (!_history) {
-        __weak typeof(self) weakSelf = self;
-        JHCusomHistory *history = [[JHCusomHistory alloc] initWithFrame:CGRectMake(0, 200, 400, 200) maxSaveNum:5 fileName:@"parkingHistorySearch.data" andItemClickBlock:^(NSString *keyword) {
-            NSLog(@"~~~~%@",keyword);
-            
-        }];
-        history.backgroundColor = [UIColor purpleColor];
-        _history = history;
-    }
-    return _history;
+- (void)ObjcMsgSendWithString:(NSString *)string withNum:(NSNumber *)number withArray:(NSArray *)array {
+    NSLog(@"%@, %@, %@", string, number, array[0]);
 }
+
+typedef struct ParameterStruct{
+    int a;
+    int b;
+}MyStruct;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = ANYColorRandom;
+    
+    NSDictionary *dicemp = @{@"first":@"partridge",@"second": @"turtledoves",@"fifth": @"golden rings"};
+    
+    NSLog(@"%@",dicemp[@"112222"]);
+    
+//    [self invocationInstance];
+    
+    for (NSInteger i = 0; i <2; i ++) {
+//        [self performSelector:NSSelectorFromString(@[@"doSomething",@"doAnotherThing"][i])];
+        //代替switch
+        [self performSelector:NSSelectorFromString(@[@"doSomething:",@"doAnotherThing:"][i]) withObject:@(i)];
+    }
+    
+    NSString *str = @"字符串objc_msgSend";
+    NSNumber *num = @20;
+    NSArray *arr = @[@"数组值1", @"数组值2"];
+    SEL sel = NSSelectorFromString(@"ObjcMsgSendWithString:withNum:withArray:");
+    ((void (*) (id, SEL, NSString *, NSNumber *, NSArray *))objc_msgSend)(self, sel, str, num, arr);
+    
+    
+    MyStruct mystruct = {10,20};
+    NSValue *value = [NSValue valueWithBytes:&mystruct objCType:@encode(MyStruct)];
+    
+    MyStruct struceBack;
+    [value getValue:&struceBack];
+    NSLog(@"%d~~~~~~~~~",struceBack.a);
+    
+    NSProxy *prox = [NSProxy alloc];
     
 //    UIView *loadingView = [[UIView alloc]initWithFrame:CGRectMake(200, 300, 100, 100)];
 //    [self.view addSubview:loadingView];
@@ -138,13 +254,13 @@
     EFButton *btn = [EFButton new];
     [self.view addSubview:btn];
     btn.backgroundColor = [UIColor redColor];
-    btn.frame = CGRectMake(100, 100, 140, 60);
-    btn.center = CGPointMake(100, 100);
+    btn.frame = CGRectMake(100, 600, 140, 60);
+//    btn.center = CGPointMake(100, 100);
     [btn setTitle:@"客服服务" forState:(UIControlStateNormal)];
     [btn setImage:[UIImage imageNamed:@"qwas.png"] forState:(UIControlStateNormal)];
     [btn addTarget:self action:@selector(click:) forControlEvents:(UIControlEventTouchUpInside)];
     self.tmpFlag = 0;
-    btn.center = CGPointMake(200, 200);
+//    btn.center = CGPointMake(200, 200);
 //    btn.transform = CGAffineTransformMakeRotation(-71.565051);
     
 //    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(100, 300, 100, 100)];
@@ -164,96 +280,224 @@
 //
 //    [self.view addSubview:self.history];
     
-    
 }
 
 -(void)click:(UIButton *)btn{
     btn.selected = !btn.selected;
-    [self plateNumber];
+//    SelectLabelShowVC *scVC = [[SelectLabelShowVC alloc] init];
+//    [self.navigationController pushViewController:scVC animated:YES];
+    [self ImagesGroupView];
+}
+
+
+
+/// keep首页动画
+- (void)keepLaunchAnimation{
+    NSString *moviePath = [[NSBundle mainBundle] pathForResource:@"keep" ofType:@"mp4"];
+    
+    self.moviePlayerController.contentURL = [[NSURL alloc] initFileURLWithPath:moviePath];
+    
+    [self.moviePlayerController play];
+    
+    [self.moviePlayerController.view bringSubviewToFront:self.view];
+}
+#pragma mark - NSNotificationCenter
+- (void)playbackStateChanged
+{
+    MPMoviePlaybackState playbackState = [self.moviePlayerController playbackState];
+    if (playbackState == MPMoviePlaybackStateStopped || playbackState == MPMoviePlaybackStatePaused) {
+        [self.moviePlayerController play];
+    }
+}
+#pragma mark - setter and getter
+- (MPMoviePlayerController *)moviePlayerController
+{
+    if (!_moviePlayerController) {
+        
+        _moviePlayerController = [[MPMoviePlayerController alloc] init];
+        
+        [_moviePlayerController setShouldAutoplay:YES];
+        
+        _moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
+        [_moviePlayerController setFullscreen:YES];
+        
+        [_moviePlayerController setRepeatMode:MPMovieRepeatModeOne];
+        _moviePlayerController.controlStyle = MPMovieControlStyleNone;
+        _moviePlayerController.view.frame = [UIScreen mainScreen].bounds;
+        
+        [self.view addSubview:self.moviePlayerController.view];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackStateChanged) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
+        
+    }
+    return _moviePlayerController;
+}
+
+
+- (imagePickerViewController *)imagePickVC{
+    if (!_imagePickVC) {
+        _imagePickVC = [imagePickerViewController new];
+    }
+    return _imagePickVC;
+}
+
+
+- (alertviewViewController *)alertVC{
+    if (!_alertVC) {
+        _alertVC = [alertviewViewController new];
+        _alertVC.view.frame = CGRectMake(0, 0, 200, 200);
+    }
+    return _alertVC;
+}
+
+#pragma 历史记录相关
+- (JHCusomHistory *)history{
+    if (!_history) {
+        __weak typeof(self) weakSelf = self;
+        JHCusomHistory *history = [[JHCusomHistory alloc] initWithFrame:CGRectMake(0, 200, 400, 200) maxSaveNum:5 fileName:@"parkingHistorySearch.data" andItemClickBlock:^(NSString *keyword) {
+            NSLog(@"~~~~%@",keyword);
+            
+        }];
+        history.backgroundColor = [UIColor purpleColor];
+        _history = history;
+    }
+    return _history;
+}
+
+#pragma mark - 照片浏览器
+- (NSArray *)srcStringArray{
+    if (!_srcStringArray) {
+        _srcStringArray = @[
+                            @"http://ww2.sinaimg.cn/thumbnail/98719e4agw1e5j49zmf21j20c80c8mxi.jpg",
+                            @"http://ww2.sinaimg.cn/thumbnail/642beb18gw1ep3629gfm0g206o050b2a.gif",
+                            @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr2n1jjj20gy0o9tcc.jpg",
+                            @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr39ht9j20gy0o6q74.jpg",
+                            @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr3xvtlj20gy0obadv.jpg",
+                            @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr4nndfj20gy0o9q6i.jpg",
+                            @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr57tn9j20gy0obn0f.jpg",
+                            @"http://ww2.sinaimg.cn/thumbnail/677febf5gw1erma104rhyj20k03dz16y.jpg",
+                            @"http://ww4.sinaimg.cn/thumbnail/677febf5gw1erma1g5xd0j20k0esa7wj.jpg",
+                            ];
+    }
+    return _srcStringArray;
+}
+
+#pragma mark - icon旋转
+- (void)imagRotate:(UIButton *)btn{
+    if (self.tmpFlag > 7) {
+        self.tmpFlag = 0;
+    }
+    //    double aaa = atan(-1);
+    //    double asina = sin(M_PI/6);
+    //    NSLog(@"%f ~~~~ %f~~~~%f",aaa,asina,M_PI);
+    
+    //    double angle1 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:5];
+    //    double angle2 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:3];
+    //    double angle3 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:3];
+    //    double angle4 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:5];
+    //    NSLog(@"第一象限%f~~~第二象限%f~~~~第三象限%f~~~~第四象限%f",angle1,angle2,angle3,angle4);
+    
+    //    double angle1 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:5];
+    //    double angle2 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:3];
+    //    double angle3 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:3];
+    //    double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:5];
+    //    NSLog(@"第一象限%f~~~第二象限%f~~~~第三象限%f~~~~第四象限%f",angle1,angle2,angle3,angle4);
+    
+    switch (self.tmpFlag) {
+        case 0:
+        {
+            double angle1 = [self getTanWithLat1:5 whitLng1:4 whitLat2:8 whitLng2:5];
+            NSLog(@"第一象限%f",angle1);
+            btn.transform = CGAffineTransformMakeRotation(angle1);
+        }
+            break;
+        case 1:
+        {
+            double angle2 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:3];
+            NSLog(@"第二象限%f",angle2);
+            btn.transform = CGAffineTransformMakeRotation(angle2);
+        }
+            break;
+        case 2:
+        {
+            double angle3 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:3];
+            NSLog(@"第三象限%f",angle3);
+            btn.transform = CGAffineTransformMakeRotation(angle3);
+        }
+            break;
+        case 3:
+        {
+            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:5];
+            NSLog(@"第四象限%f",angle4);
+            btn.transform = CGAffineTransformMakeRotation(angle4);
+        }
+            break;
+        case 4:
+        {
+            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:4];
+            NSLog(@"y上半轴%f",angle4);
+            btn.transform = CGAffineTransformMakeRotation(angle4);
+        }
+            break;
+        case 5:
+        {
+            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:4];
+            NSLog(@"y下半轴%f",angle4);
+            btn.transform = CGAffineTransformMakeRotation(angle4);
+        }
+            break;
+        case 6:
+        {
+            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:5 whitLng2:5];
+            NSLog(@"x右半轴%f",angle4);
+            btn.transform = CGAffineTransformMakeRotation(angle4);
+        }
+            break;
+            
+        case 7:
+        {
+            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:5 whitLng2:3];
+            NSLog(@"x左半轴%f",angle4);
+            btn.transform = CGAffineTransformMakeRotation(angle4);
+        }
+            break;
+            
+        default:
+            break;
+    }
+    self.tmpFlag += 1;
+}
+
+
+- (void)popoverView:(UIButton *)btn{
+    ANPopoverView *popoverView = [ANPopoverView popoverView];
+    [popoverView showToView:btn withActions:@"只有初恋般的热情和宗教般的意志，人才有可能成就某种事业。 尽管创造的过程无比艰辛而成功的结果无比荣耀；尽管一切艰辛都是为了成功，但是，人生最大的幸福也许在于创造的过程，而不在于那个结果。 读书如果不是一种消遣，那是相当熬人的，就像长时间不间断地游泳，使人精疲力竭，有一种随时溺没的感觉。"];
+}
+
+- (void)addCalendar{
+    FDCalendar *calendar = [[FDCalendar alloc] initWithCurrentDate:[NSDate date] weekBackColor:[UIColor orangeColor] dateArray:nil addCalendarStyle:CalendarStyle1];
+    self.calendar = calendar;
+    //    CGRect frame = calendar.frame;
+    //    frame.origin.y = 0;
+    calendar.frame = CGRectMake(0, 70, kScreenWidth, kScreenHeight - 70 - 10);
+    [self.view addSubview:calendar];
+}
+
+#pragma mark - 照片浏览器
+- (void)ImagesGroupView{
     
     
-//    if (self.tmpFlag > 7) {
-//        self.tmpFlag = 0;
-//    }
-////    double aaa = atan(-1);
-////    double asina = sin(M_PI/6);
-////    NSLog(@"%f ~~~~ %f~~~~%f",aaa,asina,M_PI);
-//
-////    double angle1 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:5];
-////    double angle2 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:3];
-////    double angle3 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:3];
-////    double angle4 = [self getBearingWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:5];
-////    NSLog(@"第一象限%f~~~第二象限%f~~~~第三象限%f~~~~第四象限%f",angle1,angle2,angle3,angle4);
-//
-////    double angle1 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:5];
-////    double angle2 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:3];
-////    double angle3 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:3];
-////    double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:5];
-////    NSLog(@"第一象限%f~~~第二象限%f~~~~第三象限%f~~~~第四象限%f",angle1,angle2,angle3,angle4);
-//
-//    switch (self.tmpFlag) {
-//        case 0:
-//        {
-//            double angle1 = [self getTanWithLat1:5 whitLng1:4 whitLat2:8 whitLng2:5];
-//            NSLog(@"第一象限%f",angle1);
-//            btn.transform = CGAffineTransformMakeRotation(angle1);
-//        }
-//            break;
-//        case 1:
-//        {
-//            double angle2 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:3];
-//            NSLog(@"第二象限%f",angle2);
-//            btn.transform = CGAffineTransformMakeRotation(angle2);
-//        }
-//            break;
-//        case 2:
-//        {
-//            double angle3 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:3];
-//            NSLog(@"第三象限%f",angle3);
-//            btn.transform = CGAffineTransformMakeRotation(angle3);
-//        }
-//            break;
-//        case 3:
-//        {
-//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:5];
-//            NSLog(@"第四象限%f",angle4);
-//            btn.transform = CGAffineTransformMakeRotation(angle4);
-//        }
-//            break;
-//        case 4:
-//        {
-//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:6 whitLng2:4];
-//            NSLog(@"y上半轴%f",angle4);
-//            btn.transform = CGAffineTransformMakeRotation(angle4);
-//        }
-//            break;
-//        case 5:
-//        {
-//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:4 whitLng2:4];
-//            NSLog(@"y下半轴%f",angle4);
-//            btn.transform = CGAffineTransformMakeRotation(angle4);
-//        }
-//            break;
-//        case 6:
-//        {
-//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:5 whitLng2:5];
-//            NSLog(@"x右半轴%f",angle4);
-//            btn.transform = CGAffineTransformMakeRotation(angle4);
-//        }
-//            break;
-//
-//        case 7:
-//        {
-//            double angle4 = [self getTanWithLat1:5 whitLng1:4 whitLat2:5 whitLng2:3];
-//            NSLog(@"x左半轴%f",angle4);
-//            btn.transform = CGAffineTransformMakeRotation(angle4);
-//        }
-//            break;
-//
-//        default:
-//            break;
-//    }
-//    self.tmpFlag += 1;
+    HZImagesGroupView *imagesGroupView = [[HZImagesGroupView alloc] initWithFrame:CGRectMake(0, 180, kScreenWidth, kScreenHeight - 80 - 30)];
+    NSMutableArray *temp = [NSMutableArray array];
+    [self.srcStringArray enumerateObjectsUsingBlock:^(NSString *src, NSUInteger idx, BOOL *stop) {
+        HZPhotoItemModel *item = [[HZPhotoItemModel alloc] init];
+        item.thumbnail_pic = src;
+        [temp addObject:item];
+    }];
+    imagesGroupView.photoItemArray = [temp copy];
+    imagesGroupView.backgroundColor = [UIColor orangeColor];
+    [self.view addSubview:imagesGroupView];
+//    imagesGroupView.hidden = YES;
+//    [imagesGroupView showGigPhotoBrowser];
 }
 
 

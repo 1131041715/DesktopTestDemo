@@ -1,0 +1,15 @@
+//
+//  HeadTest.pch
+//  testbutton
+//
+//  Created by 大豌豆 on 19/J/12.
+//  Copyright © 2019 大碗豆. All rights reserved.
+//
+
+#define kScreenWidth  [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight  [UIScreen mainScreen].bounds.size.height
+
+#pragma mark - 颜色相关
+#define ANYColorWithRGB(redValue, greenValue, blueValue) ([UIColor colorWithRed:((redValue)/255.0) green:((greenValue)/255.0) blue:((blueValue)/255.0) alpha:1])
+/**随机颜色设置*/
+#define ANYColorRandom ANYColorWithRGB(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
