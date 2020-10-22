@@ -113,7 +113,7 @@ float DegreesToRadians(float angle) {
 
 /*! @brief 显示弹窗指向某个点,  */
 - (void)showToPoint:(CGPoint)toPoint contents:(nonnull NSString *)contents{
-    NSAssert(_actions.count > 0, @"actions must not be nil or empty !");
+//    NSAssert(_actions.count > 0, @"actions must not be nil or empty !");
     
     // 截取弹窗时相关数据
     float arrowWidth = 28;

@@ -15,47 +15,21 @@
 #import "YFGIFImageView.h"
 #import "QWERT.h"
 #import "MJExtension.h"
-#import "PlateInputView.h"
-#import "threeViewController.h"
+
 #import "ScrawlViewController.h"
-#import "LicensePlateView.h"
-#import "tabViewSelect.h"
+
+
 
 #import "HLWebViewController.h"
 
-#import "JHCusomHistory.h"
-
-#import "ANPopoverView.h"
-
-#import "FDCalendar.h"
-
-#import <objc/message.h>
-
-#pragma mark - 照片浏览器
-#import "HZImagesGroupView.h"
-#import "HZPhotoItemModel.h"
-#import "HZPhotoBrowser.h"
-#import "FSLoopScrollView.h"
-
-
-#import <MediaPlayer/MediaPlayer.h>
-
-#import "SelectLabelShowVC.h"
-
-//#if (DEBUG == 1 || TARGET_OS_SIMULATOR)
-//#else
-//#ifdef FILELOG_SUPPORT
-//[self redirectNSlogToDocumentFolder];
-//#endif
-//#endif//```
-
-#define FILELOG_SUPPORT(str) [self redirectNSlogToDocumentFolder:str]
+#import "alertviewViewController.h"
 
 
 #define WIDTH [UIScreen mainScreen].bounds.size.width
 #define HEIGHT [UIScreen mainScreen].bounds.size.height
 
-@interface ViewController ()<LGAlertViewDelegate,UITextViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate,HZPhotoBrowserDelegate>
+
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,LGAlertViewDelegate,UITextViewDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,UITextFieldDelegate>
 
 @property(nonatomic,strong)UIViewController *vc;
 
@@ -63,11 +37,6 @@
 
 @property(nonatomic,strong) imagePickerViewController *imagePickVC;
 
-@property(nonatomic,strong)CAShapeLayer *shapeLayer;
-@property(nonatomic,strong)CAShapeLayer *shapeLayerTwo;
-@property(nonatomic,strong)NSTimer *timer;
-@property(nonatomic,assign)CGFloat timeD;
-@property(nonatomic,strong)UIView *loadingView;
 
 @property(nonatomic,strong)NSString *是;
 
@@ -77,177 +46,23 @@
 
 @property(nonatomic,strong)UIImageView *imag;
 
-@property (nonatomic,strong)PlateInputView * plateInput;
-@property (nonatomic,strong)UITextField * plateTextField;
-
-@property (nonatomic,strong)tabViewSelect *tabViewSelect;
-
 @property (nonatomic,assign) NSInteger tmpFlag;
 
-@property (nonatomic, strong) JHCusomHistory *history;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *dataArr;
+@property (nonatomic, strong) NSArray *controlArr;
 
-@property (nonatomic ,strong) FDCalendar *calendar;
-
-@property (nonatomic, strong) NSArray *srcStringArray;
-@property (nonatomic, strong) FSLoopScrollView *loopView;
-
-@property (nonatomic, strong) MPMoviePlayerController *moviePlayerController;
 @end
 
 @implementation ViewController
 
-
-//三个参数的方法
--(void)take:(NSString *)name andAge:(NSString *)age andBlue:(NSString *)color{
-    NSLog(@"%@-%@-%@",name,age,color);
-//    return 7;
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 }
--(void)invocationInstance{
-//    1.通过方法调用者创建方法签名；此方法是NSObject 的方法
-    NSMethodSignature *sig = [[self class] instanceMethodSignatureForSelector:@selector(take:andAge:andBlue:)];
-//    2.通过方法签名 生成NSInvocation
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
-//    3.对invocation设置 方法调用者
-    invocation.target = self;
-//    4.对invocation设置 方法选择器
-    invocation.selector = @selector(take:andAge:andBlue:);
-//    5.对invocation设置 参数
-    NSString *name = @"张三";
-    NSString *age = @"20";
-    NSString *color = @"red";
-    //注意：设置的参数必须从2开始；因为0和1 已经被self ,_cmd 给占用了
-    [invocation setArgument:&name atIndex:2];
-    [invocation setArgument:&age atIndex:3];
-    [invocation setArgument:&color atIndex:4];
-//    6.执行invocation
-    [invocation invoke];
-//    7.判断 方法签名 判断是否有返回值
-    const char *sigretun =  sig.methodReturnType; //方法签名的返回值
-    NSUInteger siglength = sig.methodReturnLength; //方法签名返回值长度； 如果是字符串返回8，数字返回4，没有返回值返回0；
-    if (siglength !=0) { //有返回值
-        if (strcmp(sigretun, "@") == 0) {
-            NSString *returnStr;
-            [invocation getReturnValue:&returnStr];
-            NSLog(@"字符串返回值：%@",returnStr);
-        }else if (strcmp(sigretun, "i")){
-            int a = 0;
-            [invocation setReturnValue:&a];
-            NSLog(@"数字返回值：%d",a);
-        }
-    }else{ //没有返回值
-        NSLog(@"没有返回值");
-    }
-    
-//    8.常用方法
-    NSUInteger argumentNum = sig.numberOfArguments;
-    NSLog(@"%zd",argumentNum); //参数的个数
-    
-    const char *type = [sig getArgumentTypeAtIndex:3];
-    NSLog(@"方法签名中下标为3的的参数类型:%s",type);
-}
-// 扩展
-//-(id)performSelector:(SEL)aSelector withObjects:(NSArray *)objects{
-//    //生成方法签名
-//    NSMethodSignature *sig = [NSMethodSignature methodSignatureForSelector:aSelector];
-//    if (sig == nil) { //如果方法签名不存在抛出异常
-//        [NSException raise:@"exceptionName" format:@"%@not found method",NSStringFromSelector(aSelector)];
-//    }
-//    //生成invocation
-//    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:sig];
-//    invocation.target = self;// 设置调用对象
-//    invocation.selector = aSelector;//设置方法选择器
-//
-//    NSInteger num = sig.numberOfArguments -2; //传递进来的参数个数
-//    NSInteger min = MAX(num, objects.count); //取得参数的数量；
-//    for (int i = 0; i< min; i++) {
-//        id obj = objects[i];
-//        if ([obj isKindOfClass:[NSNull class]]) continue;
-//            //设置参数
-//        [invocation setArgument:&obj atIndex:i+2];
-//
-//    }
-//    //调用方法
-//    [invocation invoke];
-//
-//    //获得返回值
-//    id retrunvalue = nil;
-//    if (sig.methodReturnLength !=0) { //如果有返回值的话，获取返回值
-//        [invocation getReturnValue:&retrunvalue];
-//    }
-//    return retrunvalue;
-//
-//
-//}
-
-- (void)doSomething:(id)index{
-    NSLog(@"%@~~~~~~%@~~~",NSStringFromSelector(_cmd),index);
-}
-
-- (void)doAnotherThing:(id)index{
-    NSLog(@"%@~~~~~~%@~~~",NSStringFromSelector(_cmd),index);
-}
-
-- (void)ObjcMsgSendWithString:(NSString *)string withNum:(NSNumber *)number withArray:(NSArray *)array {
-    NSLog(@"%@, %@, %@", string, number, array[0]);
-}
-
-typedef struct ParameterStruct{
-    int a;
-    int b;
-}MyStruct;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.view.backgroundColor = ANYColorRandom;
-    
-    NSDictionary *dicemp = @{@"first":@"partridge",@"second": @"turtledoves",@"fifth": @"golden rings"};
-    
-    NSLog(@"%@",dicemp[@"112222"]);
-    
-//    [self invocationInstance];
-    
-    for (NSInteger i = 0; i <2; i ++) {
-//        [self performSelector:NSSelectorFromString(@[@"doSomething",@"doAnotherThing"][i])];
-        //代替switch
-        [self performSelector:NSSelectorFromString(@[@"doSomething:",@"doAnotherThing:"][i]) withObject:@(i)];
-    }
-    
-    NSString *str = @"字符串objc_msgSend";
-    NSNumber *num = @20;
-    NSArray *arr = @[@"数组值1", @"数组值2"];
-    SEL sel = NSSelectorFromString(@"ObjcMsgSendWithString:withNum:withArray:");
-    ((void (*) (id, SEL, NSString *, NSNumber *, NSArray *))objc_msgSend)(self, sel, str, num, arr);
-    
-    
-    MyStruct mystruct = {10,20};
-    NSValue *value = [NSValue valueWithBytes:&mystruct objCType:@encode(MyStruct)];
-    
-    MyStruct struceBack;
-    [value getValue:&struceBack];
-    NSLog(@"%d~~~~~~~~~",struceBack.a);
-    
-    NSProxy *prox = [NSProxy alloc];
-    
-//    UIView *loadingView = [[UIView alloc]initWithFrame:CGRectMake(200, 300, 100, 100)];
-//    [self.view addSubview:loadingView];
-//    self.loadingView = loadingView;
-//    loadingView.backgroundColor = [UIColor blueColor];
-    
-//    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushtoDetailVC:)];
-//    tapGesture.numberOfTouchesRequired=1;
-//    tapGesture.numberOfTapsRequired=1;
-//    tapGesture.delegate = self;
-//    [loadingView addGestureRecognizer:tapGesture];
-//
-//    UILabel *labtmp = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-//    labtmp.textColor = [UIColor redColor];
-//    labtmp.font = [UIFont systemFontOfSize:15];
-//    labtmp.text = @"我是第一";
-//    [self.loadingView addSubview:labtmp];
-//
-//    self.title = @"我是第一";
-    
     
     _dic = [NSDictionary new];
     
@@ -269,68 +84,69 @@ typedef struct ParameterStruct{
 //
 //    tmpView.transform = CGAffineTransformMakeRotation(-70);
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.dataArr = @[@"数组字符串数据处理",@"动态方法调用",@"车牌键盘",@"加载转圈",@"历史记录展示",@"图片浏览",@"label搜索条件展示",@"不限制内容弹窗提示",@"tab弹窗单选",@"keep动画",@"日历自定义",@"控制连续跳转返回",@"文字滚动"];
+    self.controlArr = @[@"ArrayHandelVC",@"DynamicMethodVC",@"LicensePlateVC",@"LoadingViewVC",@"HistoryVC",@"ImagebrowseVC",@"SelectLabelShowVC",@"ANPopoverVC",@"TabAloneSelectVC",@"KeepLaunchAnimationVC",@"CalendarCustomVC",@"alertviewViewController",@"LabelScrlllVC"];
+    self.title = @"首页";
+    [self.view addSubview:self.tableView];
     
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%ld",(long)indexPath.row);
     
-//    //添加历史记录视图
-//    self.history.searchKey = @"45678";
-//    self.history.searchKey = @"sx";
-//    self.history.searchKey = @"2345ydfc";
-//    self.history.searchKey = @"oiudc1234";
-//    self.history.searchKey = @"456yhbcx";
-//
-//    [self.view addSubview:self.history];
-    
+    NSString *titleName = self.dataArr[indexPath.row];
+    NSString *VCName = self.controlArr[indexPath.row];
+    Class contrName = NSClassFromString(VCName);
+    UIViewController *VC = [[contrName alloc] init];
+    VC.title = titleName;
+    [self.navigationController pushViewController:VC animated:YES];
+}
+
+- (UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = ({
+            UITableView *tab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - STATUS_NAV_HEIGHT - TABBAR_SPACE) style:(UITableViewStylePlain)];
+            tab.rowHeight = 50;
+            tab.dataSource = self;
+            tab.delegate = self;
+            tab.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+            tab.backgroundColor = [UIColor whiteColor];
+            tab.separatorStyle = UITableViewCellSeparatorStyleNone;
+            tab;
+        });
+    }
+    return _tableView;
+}
+
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArr.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([self class])];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:NSStringFromClass([self class])];
+    }
+    cell.backgroundColor = ANYColorRandom;
+    NSString *titleName = self.dataArr[indexPath.row];
+    NSString *VCName = self.controlArr[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@~~%@",titleName,VCName];
+    return cell;
 }
 
 -(void)click:(UIButton *)btn{
     btn.selected = !btn.selected;
-//    SelectLabelShowVC *scVC = [[SelectLabelShowVC alloc] init];
-//    [self.navigationController pushViewController:scVC animated:YES];
-    [self ImagesGroupView];
+
 }
 
 
 
-/// keep首页动画
-- (void)keepLaunchAnimation{
-    NSString *moviePath = [[NSBundle mainBundle] pathForResource:@"keep" ofType:@"mp4"];
-    
-    self.moviePlayerController.contentURL = [[NSURL alloc] initFileURLWithPath:moviePath];
-    
-    [self.moviePlayerController play];
-    
-    [self.moviePlayerController.view bringSubviewToFront:self.view];
-}
-#pragma mark - NSNotificationCenter
-- (void)playbackStateChanged
-{
-    MPMoviePlaybackState playbackState = [self.moviePlayerController playbackState];
-    if (playbackState == MPMoviePlaybackStateStopped || playbackState == MPMoviePlaybackStatePaused) {
-        [self.moviePlayerController play];
-    }
-}
-#pragma mark - setter and getter
-- (MPMoviePlayerController *)moviePlayerController
-{
-    if (!_moviePlayerController) {
-        
-        _moviePlayerController = [[MPMoviePlayerController alloc] init];
-        
-        [_moviePlayerController setShouldAutoplay:YES];
-        
-        _moviePlayerController.movieSourceType = MPMovieSourceTypeFile;
-        [_moviePlayerController setFullscreen:YES];
-        
-        [_moviePlayerController setRepeatMode:MPMovieRepeatModeOne];
-        _moviePlayerController.controlStyle = MPMovieControlStyleNone;
-        _moviePlayerController.view.frame = [UIScreen mainScreen].bounds;
-        
-        [self.view addSubview:self.moviePlayerController.view];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playbackStateChanged) name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
-        
-    }
-    return _moviePlayerController;
-}
+
 
 
 - (imagePickerViewController *)imagePickVC{
@@ -349,37 +165,9 @@ typedef struct ParameterStruct{
     return _alertVC;
 }
 
-#pragma 历史记录相关
-- (JHCusomHistory *)history{
-    if (!_history) {
-        __weak typeof(self) weakSelf = self;
-        JHCusomHistory *history = [[JHCusomHistory alloc] initWithFrame:CGRectMake(0, 200, 400, 200) maxSaveNum:5 fileName:@"parkingHistorySearch.data" andItemClickBlock:^(NSString *keyword) {
-            NSLog(@"~~~~%@",keyword);
-            
-        }];
-        history.backgroundColor = [UIColor purpleColor];
-        _history = history;
-    }
-    return _history;
-}
 
-#pragma mark - 照片浏览器
-- (NSArray *)srcStringArray{
-    if (!_srcStringArray) {
-        _srcStringArray = @[
-                            @"http://ww2.sinaimg.cn/thumbnail/98719e4agw1e5j49zmf21j20c80c8mxi.jpg",
-                            @"http://ww2.sinaimg.cn/thumbnail/642beb18gw1ep3629gfm0g206o050b2a.gif",
-                            @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr2n1jjj20gy0o9tcc.jpg",
-                            @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr39ht9j20gy0o6q74.jpg",
-                            @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr3xvtlj20gy0obadv.jpg",
-                            @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr4nndfj20gy0o9q6i.jpg",
-                            @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr57tn9j20gy0obn0f.jpg",
-                            @"http://ww2.sinaimg.cn/thumbnail/677febf5gw1erma104rhyj20k03dz16y.jpg",
-                            @"http://ww4.sinaimg.cn/thumbnail/677febf5gw1erma1g5xd0j20k0esa7wj.jpg",
-                            ];
-    }
-    return _srcStringArray;
-}
+
+
 
 #pragma mark - icon旋转
 - (void)imagRotate:(UIButton *)btn{
@@ -468,37 +256,11 @@ typedef struct ParameterStruct{
 }
 
 
-- (void)popoverView:(UIButton *)btn{
-    ANPopoverView *popoverView = [ANPopoverView popoverView];
-    [popoverView showToView:btn withActions:@"只有初恋般的热情和宗教般的意志，人才有可能成就某种事业。 尽管创造的过程无比艰辛而成功的结果无比荣耀；尽管一切艰辛都是为了成功，但是，人生最大的幸福也许在于创造的过程，而不在于那个结果。 读书如果不是一种消遣，那是相当熬人的，就像长时间不间断地游泳，使人精疲力竭，有一种随时溺没的感觉。"];
-}
 
-- (void)addCalendar{
-    FDCalendar *calendar = [[FDCalendar alloc] initWithCurrentDate:[NSDate date] weekBackColor:[UIColor orangeColor] dateArray:nil addCalendarStyle:CalendarStyle1];
-    self.calendar = calendar;
-    //    CGRect frame = calendar.frame;
-    //    frame.origin.y = 0;
-    calendar.frame = CGRectMake(0, 70, kScreenWidth, kScreenHeight - 70 - 10);
-    [self.view addSubview:calendar];
-}
 
-#pragma mark - 照片浏览器
-- (void)ImagesGroupView{
-    
-    
-    HZImagesGroupView *imagesGroupView = [[HZImagesGroupView alloc] initWithFrame:CGRectMake(0, 180, kScreenWidth, kScreenHeight - 80 - 30)];
-    NSMutableArray *temp = [NSMutableArray array];
-    [self.srcStringArray enumerateObjectsUsingBlock:^(NSString *src, NSUInteger idx, BOOL *stop) {
-        HZPhotoItemModel *item = [[HZPhotoItemModel alloc] init];
-        item.thumbnail_pic = src;
-        [temp addObject:item];
-    }];
-    imagesGroupView.photoItemArray = [temp copy];
-    imagesGroupView.backgroundColor = [UIColor orangeColor];
-    [self.view addSubview:imagesGroupView];
-//    imagesGroupView.hidden = YES;
-//    [imagesGroupView showGigPhotoBrowser];
-}
+
+
+
 
 
 //使用tan计算两点之间的转角
@@ -601,25 +363,6 @@ typedef struct ParameterStruct{
 }
 
 
-//隐藏键盘
-
--(void)pushtoDetailVC:(UITapGestureRecognizer *)Recognizer{
-    NSLog(@"2345678ujm");
-}
-
-
-#pragma mark 通过宏调用自定义方法 --- 无参数无返回值的宏，带参数的宏，带返回值的宏，
-- (void)defineFunction{
-    FILELOG_SUPPORT(@"2222");
-    NSString *str = FILELOG_SUPPORT(@"2222");
-    NSLog(@"%@",str);
-}
-
-- (NSString *)redirectNSlogToDocumentFolder:(NSString *)str{
-    NSLog(@"通过宏定义调用自定义的方法~~~~%@",str);
-    NSString *strReturn = @"我是返回值";
-    return strReturn;
-}
 
 
 #pragma mark UIAlertAction颜色修改
@@ -700,19 +443,7 @@ typedef struct ParameterStruct{
 }
 
 
-#pragma mark TableView单选
-- (void)selectTabViewCell{
-    self.tabViewSelect = [[tabViewSelect alloc] init];
-    self.tabViewSelect.selecTitle = @"tabViewSelect单选";
-//    __weak typeof(self) weakSelf = self;
-    NSArray *allArr = @[@"不限",@"以后再告诉你",@"与父母同住",@"租房",@"已购房（有贷款）",@"已购房（无贷款）",@"住单位房",@"住亲朋家",@"需要时购置"];
-    self.tabViewSelect.dataArr = allArr;
-    self.tabViewSelect.config = ^(NSString *contentTitle){
-        NSLog(@"%@",contentTitle);
-    };
-    
-    [[UIApplication sharedApplication].keyWindow addSubview:self.tabViewSelect];
-}
+
 
 #pragma mark 涂鸦测试
 
@@ -722,97 +453,13 @@ typedef struct ParameterStruct{
 }
 
 
-#pragma mark 车牌号输入
-- (void)plateNumber{
-    _plateTextField = [[UITextField alloc]initWithFrame:CGRectMake(30, 100, WIDTH-60, 50)];
-    _plateTextField.delegate = self;
-    _plateTextField.layer.borderColor = [UIColor blackColor].CGColor;
-    _plateTextField.layer.borderWidth = 1;
-    _plateTextField.keyboardType = UIKeyboardTypeNumberPad;//设置数字键盘防止复制粘贴板自动加空格
-    
-//    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, 200 )];
-    
-//    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
-//    tmpView.backgroundColor = [UIColor cyanColor];
-//    [inputView addSubview:tmpView];
-    
-//    UIButton *but = [[UIButton alloc] initWithFrame:CGRectMake(20, 30, 80, 20)];
-//    but.backgroundColor = [UIColor orangeColor];
-//    [but addTarget:self action:@selector(btnadd) forControlEvents:(UIControlEventTouchUpInside)];
-//    [tmpView addSubview:but];
-//
-//    _plateTextField.inputView = inputView;
-//    [self.view addSubview:_plateTextField];
-    
-    
-    LicensePlateView *carView = [LicensePlateView initFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, (([UIScreen mainScreen].bounds.size.height) / 568) *180) OriginalString:_plateTextField.text block:^(NSString *str) {
-        NSLog(@"str = %@",str);
-        self.plateTextField.text = str;
-        if (str.length == 8) {
-            [self.plateTextField resignFirstResponder];
-        }
-    }];
-    carView.backgroundColor = [UIColor whiteColor];
-    UIView *inputView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, (([UIScreen mainScreen].bounds.size.height) / 568) *180)];
-    inputView.backgroundColor = [UIColor greenColor];
-    [inputView addSubview:carView];
-    self.plateTextField.inputView = inputView;
-    [self.view addSubview:_plateTextField];
-    
-}
 
-
-- (void)btnadd{
-    NSLog(@"23456yhhjkl");
-}
-
-#pragma mark 车牌号输入框监听及代理方法
-
--(void)textChange:(UITextField *)textField{
-    NSString * str = textField.text;
-    _plateInput.plateStr = str;
-}
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
-    NSString * str = textField.text;
-    
-    string = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
-    str = [str stringByReplacingCharactersInRange:range withString:string];
-    
-    if (str.length>0) {
-        NSArray * provinceArr = @[@"京",@"津",@"晋",@"冀",@"蒙",@"辽",@"黑",@"吉",@"沪",@"苏",@"浙",@"皖",@"闽",@"赣",@"鲁",@"豫",@"鄂",@"湘",@"粤",@"桂",@"琼",@"渝",@"川",@"贵",@"云",@"藏",@"陕",@"甘",@"青",@"宁",@"新",@"W"];
-        
-        if (str.length>8) {
-            return NO;
-        }else if (![provinceArr containsObject:[str substringToIndex:1]]) {
-            return NO;
-        }else{
-            for (NSString * enumStr in provinceArr) {
-                
-                if ([enumStr isEqualToString:@"W"]) {
-                    
-                }else if ([[str substringWithRange:NSMakeRange(1, str.length-1)] rangeOfString:enumStr].location != NSNotFound ) {
-                    return NO;
-                }
-            }
-        }
-    }
-    _plateInput.plateStr = str;
-    
-    return YES;
-}
-
--(void)tapClick:(UITapGestureRecognizer *)tap{
-    [tap.view endEditing:YES];
-}
 
 
 
 - (void)removeAllSubviews{
-    
     //要删除当前View的所有子View下面一行代码即可搞定
-    [self.loadingView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    self.loadingView.frame = CGRectMake(200, 300, 100, 0);
+    [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
 }
 
 #pragma 简单的加载转圈
@@ -953,84 +600,8 @@ typedef struct ParameterStruct{
 }
 
 
-/**
- *   使用stringByTrimmingCharactersInSet函数过滤字符串中的特殊符号。
- */
--(void)testThree{
-    
-    //1:有字符串“A~B^C_D>E"，拆分出单个字母:
-    
-    NSString *str =@"      \nA~B^C_D>E       ";
-    
-    //去掉前边和后边的空格和换行符,中间部分无效.
-    str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    NSCharacterSet * charSet = [NSCharacterSet characterSetWithCharactersInString:@"^~_>"];
-    NSArray *arr = [str componentsSeparatedByCharactersInSet:charSet];
-    
-    //输出看效果
-    [arr enumerateObjectsUsingBlock:^(id obj,NSUInteger idx,BOOL *stop) {
-        
-        NSLog(@"A~B^C_D->[%@]", obj);
-        
-    }];
-    NSLog(@"arr %@",[arr componentsJoinedByString:@""]);//arr ABCDE
-    
-}
 
 - (void)btnAction:(UIButton *)btn{
-    [self testThree];
-    
-    NSString *string1 = @"ABCDEFGHIJKL\nMNOPQRSTUVsWXYZ";
-    NSLog(@"%@~~~~~~~~~",string1);
-    
-    alertviewViewController *vc = [alertviewViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    
-    //取出两个数组中相同的元素
-    NSArray *arr1 = @[@"1",@"2",@"2",@"1",@"3",@"4",@"5",@"2",@"1",@"2",@"5",@"3",@"2",@"3",@"4",@"5",@"6",@"7",@"8"];
-    NSArray *arr2 = @[@"13",@"2",@"2",@"1",@"31",@"42",@"52",@"22",@"12",@"2",@"54",@"3",@"2",@"13",@"4",@"5",@"6",@"7",@"8"];
-    
-    NSArray *selectTure = [arr1 filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF in %@", arr2]];
-    
-    NSLog(@"%@~~~~~~~~~",selectTure);
-    
-//    这样arrayContent过滤出来的就是不包含 arrayFilter中的所有item了。
-    NSArray *arrayFilter = [NSArray arrayWithObjects:@"abc1", @"abc2", nil];
-    
-    NSArray *arrayContent = [NSArray arrayWithObjects:@"a1", @"abc1", @"abc4", @"abc2", nil];
-    
-    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)", arrayFilter];
-    
-    NSArray *selectTure22 = [arrayContent filteredArrayUsingPredicate:thePredicate];
-    
-//    NSString *a = @"12wertyu";
-//   NSString *b =  [a substringWithRange:NSMakeRange(0, 1)];
-//    NSLog(@"%@",b);
-//    
-//   NSString *c = [a substringWithRange:NSMakeRange(3, 2)];
-//    
-//    NSLog(@"%@",c);
-   
-    
-    NSString *string =@"01234￥56789";
-    NSRange range = [string rangeOfString:@"￥"];
-    string = [string substringFromIndex:range.location+1];//截取掉下标7之前的字符串
-//    NSLog(@"截取的值为：%@",string);
-    
-//    NSRange range = [string rangeOfString:@":"]; //现获取要截取的字符串位置
-//    NSString * result = [string substringFromIndex:range.location+1]; //截取字符串
-//    NSLog(@"截取的值为：%@",result);
-//
-////    string = [string substringFromIndex:1];//截取掉下标2之后的字符串
-//    NSLog(@"截取的值为：%@",result);
-    
-//    NSRange range = [str rangeOfString:@"aaa"]; //现获取要截取的字符串位置
-//    NSString * result = [str substringFromIndex:range.location]; //截取字符串
-    
-    
-    
     
     
 //    dispatch_async(dispatch_get_main_queue(), ^{
@@ -1067,10 +638,7 @@ typedef struct ParameterStruct{
     
 //    [self presentViewController:self.imagePickVC animated:YES completion:nil];
     
-    [self recell];
-//
-//    float Intervaltime = 0.5;
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:Intervaltime target:self selector:@selector(circleAnimation) userInfo:nil repeats:YES];
+   
     
 //    UIImage *imag = [UIImage imageWithCGImage:(btn.imageView.image).CGImage];
 //    
@@ -1144,52 +712,7 @@ typedef struct ParameterStruct{
 }
 
 
-- (void)recell{
-    //创建出CAShapelasyer
-    self.shapeLayer = [CAShapeLayer layer];
-    //填充颜色
-    self.shapeLayer.fillColor = [UIColor clearColor].CGColor;
-    //设置线条的宽度和颜色
-    self.shapeLayer.lineWidth = 4.0f;
-    self.shapeLayer.strokeColor = [UIColor orangeColor].CGColor;
-    
 
-    self.shapeLayerTwo = [CAShapeLayer layer];
-    self.shapeLayerTwo.fillColor = [UIColor clearColor].CGColor;
-    //设置第二条背景线条的宽度和颜色
-    self.shapeLayerTwo.lineWidth = 4.0f;
-    self.shapeLayerTwo.strokeColor = [UIColor redColor].CGColor;
-    
-    //画贝塞尔曲线//画出一个园
-    UIBezierPath *path = [[UIBezierPath alloc] init];
-    //moveToPoint:去设置初始线段的起点
-    [path moveToPoint:CGPointMake(100, 50)];
-    [path addArcWithCenter:CGPointMake(50, 50) radius:50 startAngle:0 endAngle:2*M_PI clockwise:YES];
-    
-    //设置第一条第一条曲线与设定的贝塞尔曲线相同，所以在设定两条曲线的时候，可以不需要设置大小与位置
-    self.shapeLayer.path = path.CGPath;
-    self.shapeLayerTwo.path = path.CGPath;
-    
-    //设置起始点.保证圈不被显示出来
-    self.shapeLayer.strokeStart = 0;
-    self.shapeLayer.strokeEnd = 0;
-    //加载
-    [self.loadingView.layer addSublayer:self.shapeLayerTwo];
-    [self.loadingView.layer addSublayer:self.shapeLayer];
-}
-
-
-//定时器每次时间到了执行
-- (void)circleAnimation{
-   _timeD = 0.5;
-    //利用定时器控制始位置的方式做动画。
-    self.shapeLayer.strokeEnd +=_timeD;
-    if (self.shapeLayer.strokeEnd == 1) {
-        //停止计时器
-        [self.timer invalidate];
-        self.timer = nil;
-    }
-}
 
 
 -(void)gifPlay2  {

@@ -23,7 +23,7 @@
         
         _viewimage.backgroundColor = [UIColor redColor];
         
-        _viewimage.frame = CGRectMake(0, 0, 100, 100);
+        _viewimage.frame = CGRectMake(0, STATUS_NAV_HEIGHT, 100, 100);
     }
     
     return _viewimage;
@@ -63,11 +63,6 @@
     
 //    [self presentViewController:vc animated:YES completion:nil];
     [self.navigationController pushViewController:vc animated:YES];
-//
-//    
-//    
-//    
-//    NSLog(@"123");
 }
 
 //限制输入小数点后一位数
@@ -75,7 +70,7 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     // _textFiledM1  项目中的tf控件
-    if (textField == textField) {
+//    if (textField == textField) {
         
         // 1 不能直接输入小数点
         if ( [textField.text isEqualToString:@""] && [string isEqualToString:@"."] )  return NO;
@@ -112,7 +107,7 @@
         {
             return NO;
         }
-    }
+//    }
     return YES;
 }
 

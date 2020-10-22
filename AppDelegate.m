@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     //制定真机调试保存日志文件
-    [self redirectNSlogToDocumentFolder];
+//    [self redirectNSlogToDocumentFolder];
     
     // Override point for customization after application launch.
     

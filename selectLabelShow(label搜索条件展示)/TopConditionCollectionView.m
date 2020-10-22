@@ -54,7 +54,7 @@
 /* 每格cell的 宽高 */
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    FilterSelectIndexModel *model = [self.conditions objectAtIndex:indexPath.row];
+//    FilterSelectIndexModel *model = [self.conditions objectAtIndex:indexPath.row];
     
 //    if (model.subIndex != nil) {
 //        while (1) {
