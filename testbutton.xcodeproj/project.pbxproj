@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA58CE0E2546C59200096ACA /* ImagRotateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE0C2546C59200096ACA /* ImagRotateVC.m */; };
+		AA58CE0F2546C59200096ACA /* ImagRotateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE0D2546C59200096ACA /* ImagRotateVC.xib */; };
+		AA58CE142546CABC00096ACA /* CallNumberVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE122546CABC00096ACA /* CallNumberVC.m */; };
+		AA58CE152546CABC00096ACA /* CallNumberVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE132546CABC00096ACA /* CallNumberVC.xib */; };
+		AA58CE1A2546CB9F00096ACA /* ChangesystemalertviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE182546CB9F00096ACA /* ChangesystemalertviewVC.m */; };
+		AA58CE1B2546CB9F00096ACA /* ChangesystemalertviewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE192546CB9F00096ACA /* ChangesystemalertviewVC.xib */; };
+		AA58CE202546CCD000096ACA /* TestLoadingRotateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE1E2546CCD000096ACA /* TestLoadingRotateVC.m */; };
+		AA58CE212546CCD000096ACA /* TestLoadingRotateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE1F2546CCD000096ACA /* TestLoadingRotateVC.xib */; };
+		AA58CE262546CDE200096ACA /* PickImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE242546CDE200096ACA /* PickImageVC.m */; };
+		AA58CE272546CDE200096ACA /* PickImageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE252546CDE200096ACA /* PickImageVC.xib */; };
+		AA58CE2C2546D25600096ACA /* TextVHeigthCustomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE2A2546D25600096ACA /* TextVHeigthCustomVC.m */; };
+		AA58CE2D2546D25600096ACA /* TextVHeigthCustomVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE2B2546D25600096ACA /* TextVHeigthCustomVC.xib */; };
+		AA58CE322546D4F400096ACA /* VCViewSetAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE302546D4F400096ACA /* VCViewSetAlertView.m */; };
+		AA58CE332546D4F400096ACA /* VCViewSetAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE312546D4F400096ACA /* VCViewSetAlertView.xib */; };
+		AA58CE372546DB4C00096ACA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CE362546DB4C00096ACA /* QuartzCore.framework */; };
+		AA58CE392546DB5D00096ACA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA58CE382546DB5D00096ACA /* CoreGraphics.framework */; };
+		AA58CE3D2546DBA500096ACA /* BlindAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE3B2546DBA500096ACA /* BlindAnimationVC.m */; };
+		AA58CE3E2546DBA500096ACA /* BlindAnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE3C2546DBA500096ACA /* BlindAnimationVC.xib */; };
+		AA58CE432546DBB700096ACA /* ToolUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE412546DBB700096ACA /* ToolUnit.m */; };
+		AA58CE442546DBB700096ACA /* BlindUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE422546DBB700096ACA /* BlindUnit.m */; };
 		AAF4FEC225416595000404CC /* ArrayHandelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF4FEC025416595000404CC /* ArrayHandelVC.m */; };
 		AAF4FEC325416595000404CC /* ArrayHandelVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF4FEC125416595000404CC /* ArrayHandelVC.xib */; };
 		AAF4FEC825416718000404CC /* DynamicMethodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF4FEC625416718000404CC /* DynamicMethodVC.m */; };
@@ -201,6 +221,36 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA58CE0B2546C59200096ACA /* ImagRotateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagRotateVC.h; sourceTree = "<group>"; };
+		AA58CE0C2546C59200096ACA /* ImagRotateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagRotateVC.m; sourceTree = "<group>"; };
+		AA58CE0D2546C59200096ACA /* ImagRotateVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagRotateVC.xib; sourceTree = "<group>"; };
+		AA58CE112546CABC00096ACA /* CallNumberVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallNumberVC.h; sourceTree = "<group>"; };
+		AA58CE122546CABC00096ACA /* CallNumberVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallNumberVC.m; sourceTree = "<group>"; };
+		AA58CE132546CABC00096ACA /* CallNumberVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CallNumberVC.xib; sourceTree = "<group>"; };
+		AA58CE172546CB9F00096ACA /* ChangesystemalertviewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangesystemalertviewVC.h; sourceTree = "<group>"; };
+		AA58CE182546CB9F00096ACA /* ChangesystemalertviewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangesystemalertviewVC.m; sourceTree = "<group>"; };
+		AA58CE192546CB9F00096ACA /* ChangesystemalertviewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangesystemalertviewVC.xib; sourceTree = "<group>"; };
+		AA58CE1D2546CCD000096ACA /* TestLoadingRotateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestLoadingRotateVC.h; sourceTree = "<group>"; };
+		AA58CE1E2546CCD000096ACA /* TestLoadingRotateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestLoadingRotateVC.m; sourceTree = "<group>"; };
+		AA58CE1F2546CCD000096ACA /* TestLoadingRotateVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestLoadingRotateVC.xib; sourceTree = "<group>"; };
+		AA58CE232546CDE200096ACA /* PickImageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickImageVC.h; sourceTree = "<group>"; };
+		AA58CE242546CDE200096ACA /* PickImageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PickImageVC.m; sourceTree = "<group>"; };
+		AA58CE252546CDE200096ACA /* PickImageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickImageVC.xib; sourceTree = "<group>"; };
+		AA58CE292546D25600096ACA /* TextVHeigthCustomVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextVHeigthCustomVC.h; sourceTree = "<group>"; };
+		AA58CE2A2546D25600096ACA /* TextVHeigthCustomVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextVHeigthCustomVC.m; sourceTree = "<group>"; };
+		AA58CE2B2546D25600096ACA /* TextVHeigthCustomVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextVHeigthCustomVC.xib; sourceTree = "<group>"; };
+		AA58CE2F2546D4F400096ACA /* VCViewSetAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCViewSetAlertView.h; sourceTree = "<group>"; };
+		AA58CE302546D4F400096ACA /* VCViewSetAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VCViewSetAlertView.m; sourceTree = "<group>"; };
+		AA58CE312546D4F400096ACA /* VCViewSetAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VCViewSetAlertView.xib; sourceTree = "<group>"; };
+		AA58CE362546DB4C00096ACA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AA58CE382546DB5D00096ACA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		AA58CE3A2546DBA500096ACA /* BlindAnimationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlindAnimationVC.h; sourceTree = "<group>"; };
+		AA58CE3B2546DBA500096ACA /* BlindAnimationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlindAnimationVC.m; sourceTree = "<group>"; };
+		AA58CE3C2546DBA500096ACA /* BlindAnimationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlindAnimationVC.xib; sourceTree = "<group>"; };
+		AA58CE3F2546DBB600096ACA /* BlindUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlindUnit.h; sourceTree = "<group>"; };
+		AA58CE402546DBB700096ACA /* ToolUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolUnit.h; sourceTree = "<group>"; };
+		AA58CE412546DBB700096ACA /* ToolUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolUnit.m; sourceTree = "<group>"; };
+		AA58CE422546DBB700096ACA /* BlindUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlindUnit.m; sourceTree = "<group>"; };
 		AAF4FEBF25416595000404CC /* ArrayHandelVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArrayHandelVC.h; sourceTree = "<group>"; };
 		AAF4FEC025416595000404CC /* ArrayHandelVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArrayHandelVC.m; sourceTree = "<group>"; };
 		AAF4FEC125416595000404CC /* ArrayHandelVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArrayHandelVC.xib; sourceTree = "<group>"; };
@@ -578,12 +628,107 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA58CE392546DB5D00096ACA /* CoreGraphics.framework in Frameworks */,
+				AA58CE372546DB4C00096ACA /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA58CE0A2546C56A00096ACA /* imagRotate(图片旋转) */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CE0B2546C59200096ACA /* ImagRotateVC.h */,
+				AA58CE0C2546C59200096ACA /* ImagRotateVC.m */,
+				AA58CE0D2546C59200096ACA /* ImagRotateVC.xib */,
+			);
+			path = "imagRotate(图片旋转)";
+			sourceTree = "<group>";
+		};
+		AA58CE102546CA9B00096ACA /* callNumber(打电话弹窗样式) */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CE112546CABC00096ACA /* CallNumberVC.h */,
+				AA58CE122546CABC00096ACA /* CallNumberVC.m */,
+				AA58CE132546CABC00096ACA /* CallNumberVC.xib */,
+			);
+			path = "callNumber(打电话弹窗样式)";
+			sourceTree = "<group>";
+		};
+		AA58CE162546CB7900096ACA /* changesystemalertview(修改系统弹窗字体颜色) */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CE172546CB9F00096ACA /* ChangesystemalertviewVC.h */,
+				AA58CE182546CB9F00096ACA /* ChangesystemalertviewVC.m */,
+				AA58CE192546CB9F00096ACA /* ChangesystemalertviewVC.xib */,
+			);
+			path = "changesystemalertview(修改系统弹窗字体颜色)";
+			sourceTree = "<group>";
+		};
+		AA58CE1C2546CCB000096ACA /* testLoadingRotate(简单加载转圈) */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CE1D2546CCD000096ACA /* TestLoadingRotateVC.h */,
+				AA58CE1E2546CCD000096ACA /* TestLoadingRotateVC.m */,
+				AA58CE1F2546CCD000096ACA /* TestLoadingRotateVC.xib */,
+			);
+			path = "testLoadingRotate(简单加载转圈)";
+			sourceTree = "<group>";
+		};
+		AA58CE222546CDC700096ACA /* pickImage(照片选择) */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CE232546CDE200096ACA /* PickImageVC.h */,
+				AA58CE242546CDE200096ACA /* PickImageVC.m */,
+				AA58CE252546CDE200096ACA /* PickImageVC.xib */,
+			);
+			path = "pickImage(照片选择)";
+			sourceTree = "<group>";
+		};
+		AA58CE282546D21C00096ACA /* textVHeigthCustom(文本输入框自适应高度) */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CE292546D25600096ACA /* TextVHeigthCustomVC.h */,
+				AA58CE2A2546D25600096ACA /* TextVHeigthCustomVC.m */,
+				AA58CE2B2546D25600096ACA /* TextVHeigthCustomVC.xib */,
+			);
+			path = "textVHeigthCustom(文本输入框自适应高度)";
+			sourceTree = "<group>";
+		};
+		AA58CE2E2546D46A00096ACA /* VCViewSetAlertView(自定义弹窗控制器设置为弹窗) */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CE2F2546D4F400096ACA /* VCViewSetAlertView.h */,
+				AA58CE302546D4F400096ACA /* VCViewSetAlertView.m */,
+				AA58CE312546D4F400096ACA /* VCViewSetAlertView.xib */,
+			);
+			path = "VCViewSetAlertView(自定义弹窗控制器设置为弹窗)";
+			sourceTree = "<group>";
+		};
+		AA58CE342546DB0A00096ACA /* BlindAnimation(百叶窗) */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CE3A2546DBA500096ACA /* BlindAnimationVC.h */,
+				AA58CE3B2546DBA500096ACA /* BlindAnimationVC.m */,
+				AA58CE3C2546DBA500096ACA /* BlindAnimationVC.xib */,
+				AA58CE3F2546DBB600096ACA /* BlindUnit.h */,
+				AA58CE422546DBB700096ACA /* BlindUnit.m */,
+				AA58CE402546DBB700096ACA /* ToolUnit.h */,
+				AA58CE412546DBB700096ACA /* ToolUnit.m */,
+			);
+			path = "BlindAnimation(百叶窗)";
+			sourceTree = "<group>";
+		};
+		AA58CE352546DB4C00096ACA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA58CE382546DB5D00096ACA /* CoreGraphics.framework */,
+				AA58CE362546DB4C00096ACA /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AAF4FEBE2541651C000404CC /* arrayHandel(数组字符串处理) */ = {
 			isa = PBXGroup;
 			children = (
@@ -880,6 +1025,15 @@
 				C14E58371E9CC0D600A44BDA /* AppDelegate.m */,
 				C14E58391E9CC0D600A44BDA /* ViewController.h */,
 				C14E583A1E9CC0D600A44BDA /* ViewController.m */,
+				AA58CE342546DB0A00096ACA /* BlindAnimation(百叶窗) */,
+				AA58CE2E2546D46A00096ACA /* VCViewSetAlertView(自定义弹窗控制器设置为弹窗) */,
+				AA58CE282546D21C00096ACA /* textVHeigthCustom(文本输入框自适应高度) */,
+				AA58CE222546CDC700096ACA /* pickImage(照片选择) */,
+				AA58CE1C2546CCB000096ACA /* testLoadingRotate(简单加载转圈) */,
+				AA58CE162546CB7900096ACA /* changesystemalertview(修改系统弹窗字体颜色) */,
+				AA58CE102546CA9B00096ACA /* callNumber(打电话弹窗样式) */,
+				AA58CE0A2546C56A00096ACA /* imagRotate(图片旋转) */,
+				C18C8CAB21D2036100CCC9FB /* Scrawl */,
 				AAF4FEFB25418402000404CC /* label(文字滚动) */,
 				AAF4FEFA254182AB000404CC /* vcJump(控制连续跳转返回) */,
 				AAF4FEF425417AF5000404CC /* calendar(日历自定义) */,
@@ -903,11 +1057,12 @@
 				C1CB6BC221FFE1F500150A8D /* TXScrollLabelView */,
 				C1D8DF7C21F8503A00FB80BD /* historyView */,
 				C1CEFD9621F04DD00078B91D /* TableViewSelect */,
-				C18C8CAB21D2036100CCC9FB /* Scrawl */,
 				C13D99C721BF478100827E25 /* PlateInputView */,
 				C1BB64921F320A4B00546C02 /* MJExtension */,
 				C14E58321E9CC0D600A44BDA /* testbutton */,
 				C14E58311E9CC0D600A44BDA /* Products */,
+				C14E58331E9CC0D600A44BDA /* Supporting Files */,
+				AA58CE352546DB4C00096ACA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -945,7 +1100,6 @@
 				C14E59111E9F8D5500A44BDA /* image */,
 				C14E59081E9F8CBA00A44BDA /* CMPopTipView */,
 				C14E58B21E9F4EF000A44BDA /* LGAlertView */,
-				C14E58331E9CC0D600A44BDA /* Supporting Files */,
 			);
 			path = testbutton;
 			sourceTree = "<group>";
@@ -958,6 +1112,7 @@
 				C14E58341E9CC0D600A44BDA /* main.m */,
 			);
 			name = "Supporting Files";
+			path = testbutton;
 			sourceTree = "<group>";
 		};
 		C14E58B21E9F4EF000A44BDA /* LGAlertView */ = {
@@ -1374,6 +1529,7 @@
 				C14E58431E9CC0D600A44BDA /* LaunchScreen.storyboard in Resources */,
 				C15EB2281F32117600FAF828 /* werty.plist in Resources */,
 				AAF4FED525416BE9000404CC /* LoadingViewVC.xib in Resources */,
+				AA58CE3E2546DBA500096ACA /* BlindAnimationVC.xib in Resources */,
 				C1260B9021ABD4EE00683F94 /* qwas.png in Resources */,
 				C1F1E6FD1FC52AA500D42149 /* rp.png in Resources */,
 				AAF4FEDB254170E2000404CC /* HistoryVC.xib in Resources */,
@@ -1381,9 +1537,12 @@
 				AAF4FECF2541683B000404CC /* LicensePlateVC.xib in Resources */,
 				C142FB0C1EBC51CA00649356 /* 22.gif in Resources */,
 				AAF4FEF925417B1C000404CC /* CalendarCustomVC.xib in Resources */,
+				AA58CE1B2546CB9F00096ACA /* ChangesystemalertviewVC.xib in Resources */,
+				AA58CE272546CDE200096ACA /* PickImageVC.xib in Resources */,
 				C14FF646231F970600169052 /* keep.mp4 in Resources */,
 				C11B513A22EAFDA000510E72 /* README.md in Resources */,
 				AAF4FEE7254174FF000404CC /* ANPopoverVC.xib in Resources */,
+				AA58CE212546CCD000096ACA /* TestLoadingRotateVC.xib in Resources */,
 				C14E584E1E9CC12F00A44BDA /* 1.png in Resources */,
 				C1CEFD9D21F04E510078B91D /* tabViewSelectTableViewCell.xib in Resources */,
 				C14E58401E9CC0D600A44BDA /* Assets.xcassets in Resources */,
@@ -1392,12 +1551,16 @@
 				C18C8FCF21D35C9F00CCC9FB /* carTop.png in Resources */,
 				AAF4FF0025418435000404CC /* LabelScrlllVC.xib in Resources */,
 				C11B50A822EAF8A000510E72 /* whiteplaceholder.png in Resources */,
+				AA58CE332546D4F400096ACA /* VCViewSetAlertView.xib in Resources */,
+				AA58CE152546CABC00096ACA /* CallNumberVC.xib in Resources */,
 				AAF4FEC925416718000404CC /* DynamicMethodVC.xib in Resources */,
 				C14E583E1E9CC0D600A44BDA /* Main.storyboard in Resources */,
 				AAF4FEE1254172D7000404CC /* ImagebrowseVC.xib in Resources */,
+				AA58CE0F2546C59200096ACA /* ImagRotateVC.xib in Resources */,
 				C14A9B8022C4F50F0015ED94 /* icon_next@2x.png in Resources */,
 				AAF4FEC325416595000404CC /* ArrayHandelVC.xib in Resources */,
 				C14C465B1FC2884E000895F6 /* M_sousuokuang.png in Resources */,
+				AA58CE2D2546D25600096ACA /* TextVHeigthCustomVC.xib in Resources */,
 				AAF4FEED25417617000404CC /* TabAloneSelectVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1425,9 +1588,11 @@
 				C1D8DF8821F8503A00FB80BD /* JHCusomHistory.m in Sources */,
 				C1CA262524AC6D9A006F47D3 /* View+MASAdditions.m in Sources */,
 				C1BFF48124C8471800714A98 /* SDWebImageGIFCoder.m in Sources */,
+				AA58CE322546D4F400096ACA /* VCViewSetAlertView.m in Sources */,
 				C11B512222EAFDA000510E72 /* YYTextView.m in Sources */,
 				C1CA262124AC6D9A006F47D3 /* MASCompositeConstraint.m in Sources */,
 				C14E584C1E9CC0E800A44BDA /* EFButton.m in Sources */,
+				AA58CE0E2546C59200096ACA /* ImagRotateVC.m in Sources */,
 				C1CEFDA121F04F460078B91D /* LicensePlateView.m in Sources */,
 				C14E59501E9F8D9B00A44BDA /* UIProgressView+AFNetworking.m in Sources */,
 				C14E594D1E9F8D9B00A44BDA /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -1454,10 +1619,12 @@
 				C1CA262624AC6D9A006F47D3 /* MASConstraint.m in Sources */,
 				C14E59511E9F8D9B00A44BDA /* UIRefreshControl+AFNetworking.m in Sources */,
 				AAF4FEF225417716000404CC /* KeepLaunchAnimationVC.m in Sources */,
+				AA58CE432546DBB700096ACA /* ToolUnit.m in Sources */,
 				AAF4FECE2541683B000404CC /* LicensePlateVC.m in Sources */,
 				C11B512722EAFDA000510E72 /* YYTextLayout.m in Sources */,
 				C14E58D11E9F4EF000A44BDA /* LGAlertViewWindow.m in Sources */,
 				C11B50B022EAF8BF00510E72 /* HZPhotoItemModel.m in Sources */,
+				AA58CE3D2546DBA500096ACA /* BlindAnimationVC.m in Sources */,
 				C18C8CAE21D2036E00CCC9FB /* ScrawlViewController.m in Sources */,
 				C1BFF47724C8471800714A98 /* SDWebImagePrefetcher.m in Sources */,
 				C14A9B7F22C4F50F0015ED94 /* FDCalendarItem.m in Sources */,
@@ -1477,6 +1644,7 @@
 				C15048A722B75209003613F5 /* MyTableController.m in Sources */,
 				C1BFF47824C8471800714A98 /* SDWebImageCoder.m in Sources */,
 				C11B513022EAFDA000510E72 /* YYTextArchiver.m in Sources */,
+				AA58CE442546DBB700096ACA /* BlindUnit.m in Sources */,
 				C1BFF48024C8471800714A98 /* NSImage+WebCache.m in Sources */,
 				C11B512322EAFDA000510E72 /* YYTextMagnifier.m in Sources */,
 				C14E58CE1E9F4EF000A44BDA /* LGAlertViewController.m in Sources */,
@@ -1531,10 +1699,12 @@
 				C14E583B1E9CC0D600A44BDA /* ViewController.m in Sources */,
 				C1BFF46C24C8471800714A98 /* SDWebImageManager.m in Sources */,
 				C11B512822EAFDA000510E72 /* YYTextLine.m in Sources */,
+				AA58CE202546CCD000096ACA /* TestLoadingRotateVC.m in Sources */,
 				AAF4FEC825416718000404CC /* DynamicMethodVC.m in Sources */,
 				C14E58381E9CC0D600A44BDA /* AppDelegate.m in Sources */,
 				C1CB6BC821FFE1F600150A8D /* UIView+TXFrame.m in Sources */,
 				C1CA260424AC41DA006F47D3 /* FilterSelectIndexModel.m in Sources */,
+				AA58CE1A2546CB9F00096ACA /* ChangesystemalertviewVC.m in Sources */,
 				C11B513822EAFDA000510E72 /* YYTextAsyncLayer.m in Sources */,
 				C14E594F1E9F8D9B00A44BDA /* UIImageView+AFNetworking.m in Sources */,
 				C11BA1C81FC426BD00EB3C2E /* towViewController.m in Sources */,
@@ -1551,6 +1721,7 @@
 				C1BFF47F24C8471800714A98 /* UIImageView+WebCache.m in Sources */,
 				C14E59201E9F8D7900A44BDA /* MyCollectionViewCell.m in Sources */,
 				C14E59461E9F8D9B00A44BDA /* AFSecurityPolicy.m in Sources */,
+				AA58CE142546CABC00096ACA /* CallNumberVC.m in Sources */,
 				C11B512922EAFDA000510E72 /* YYTextSelectionView.m in Sources */,
 				C11B512F22EAFDA000510E72 /* YYTextAttribute.m in Sources */,
 				C14A9B8122C4F50F0015ED94 /* FDCalendar.m in Sources */,
@@ -1568,6 +1739,8 @@
 				C11B513722EAFDA000510E72 /* UIView+YYText.m in Sources */,
 				C1BB64AF1F320A4B00546C02 /* NSObject+MJClass.m in Sources */,
 				C14E59481E9F8D9B00A44BDA /* AFURLResponseSerialization.m in Sources */,
+				AA58CE262546CDE200096ACA /* PickImageVC.m in Sources */,
+				AA58CE2C2546D25600096ACA /* TextVHeigthCustomVC.m in Sources */,
 				C1BFF47924C8471800714A98 /* NSButton+WebCache.m in Sources */,
 				C1BFF48624C8471800714A98 /* UIButton+WebCache.m in Sources */,
 				C14E58CC1E9F4EF000A44BDA /* LGAlertViewButtonProperties.m in Sources */,
