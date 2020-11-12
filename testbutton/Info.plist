@@ -54,5 +54,9 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>loveway.ttf</string>
+	</array>
 </dict>
 </plist>
