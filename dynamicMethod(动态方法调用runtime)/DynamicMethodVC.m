@@ -34,6 +34,16 @@ typedef struct ParameterStruct{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+//    类中获取它的属性
+    id LenderClass = objc_getClass("HLWebViewController");
+    unsigned int outCount, i;
+    objc_property_t *properties = class_copyPropertyList(LenderClass, &outCount);
+    for (i = 0; i < outCount; i++) {
+        objc_property_t property = properties[i];
+        fprintf(stdout, "name~~~%s------属性~~~%s\n", property_getName(property), property_getAttributes(property));
+    }
+
+    
     NSDictionary *dicemp = @{@"first":@"partridge",@"second": @"turtledoves",@"fifth": @"golden rings"};
     
     NSLog(@"%@",dicemp[@"112222"]);

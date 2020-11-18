@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA1379B22563AF3100479FAD /* runTimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1379B02563AF3000479FAD /* runTimeVC.m */; };
+		AA1379B32563AF3100479FAD /* runTimeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA1379B12563AF3000479FAD /* runTimeVC.xib */; };
 		AA2CC2CF2558F51B0008D960 /* loveway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA2CC2CE2558F51B0008D960 /* loveway.ttf */; };
 		AA2CC2D42558F58B0008D960 /* ChangeFontVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2CC2D22558F58B0008D960 /* ChangeFontVC.m */; };
 		AA2CC2D52558F58B0008D960 /* ChangeFontVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2CC2D32558F58B0008D960 /* ChangeFontVC.xib */; };
@@ -31,6 +33,7 @@
 		AA58CE3E2546DBA500096ACA /* BlindAnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE3C2546DBA500096ACA /* BlindAnimationVC.xib */; };
 		AA58CE432546DBB700096ACA /* ToolUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE412546DBB700096ACA /* ToolUnit.m */; };
 		AA58CE442546DBB700096ACA /* BlindUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE422546DBB700096ACA /* BlindUnit.m */; };
+		AAB175942563CA8200335F73 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB175932563CA8200335F73 /* TestModel.m */; };
 		AAF0995E255BCB6400CFBACE /* BlockTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF0995C255BCB6400CFBACE /* BlockTestViewController.m */; };
 		AAF0995F255BCB6400CFBACE /* BlockTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF0995D255BCB6400CFBACE /* BlockTestViewController.xib */; };
 		AAF4FEC225416595000404CC /* ArrayHandelVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF4FEC025416595000404CC /* ArrayHandelVC.m */; };
@@ -227,6 +230,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA1379AF2563AF3000479FAD /* runTimeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = runTimeVC.h; sourceTree = "<group>"; };
+		AA1379B02563AF3000479FAD /* runTimeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = runTimeVC.m; sourceTree = "<group>"; };
+		AA1379B12563AF3000479FAD /* runTimeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = runTimeVC.xib; sourceTree = "<group>"; };
 		AA2CC2CE2558F51B0008D960 /* loveway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = loveway.ttf; sourceTree = "<group>"; };
 		AA2CC2D12558F58B0008D960 /* ChangeFontVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeFontVC.h; sourceTree = "<group>"; };
 		AA2CC2D22558F58B0008D960 /* ChangeFontVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeFontVC.m; sourceTree = "<group>"; };
@@ -263,6 +269,8 @@
 		AA58CE402546DBB700096ACA /* ToolUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolUnit.h; sourceTree = "<group>"; };
 		AA58CE412546DBB700096ACA /* ToolUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolUnit.m; sourceTree = "<group>"; };
 		AA58CE422546DBB700096ACA /* BlindUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlindUnit.m; sourceTree = "<group>"; };
+		AAB175922563CA8200335F73 /* TestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
+		AAB175932563CA8200335F73 /* TestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
 		AAF0995B255BCB6400CFBACE /* BlockTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockTestViewController.h; sourceTree = "<group>"; };
 		AAF0995C255BCB6400CFBACE /* BlockTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockTestViewController.m; sourceTree = "<group>"; };
 		AAF0995D255BCB6400CFBACE /* BlockTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockTestViewController.xib; sourceTree = "<group>"; };
@@ -651,6 +659,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA1379AE2563AEFB00479FAD /* runTime(运行时) */ = {
+			isa = PBXGroup;
+			children = (
+				AA1379AF2563AF3000479FAD /* runTimeVC.h */,
+				AA1379B02563AF3000479FAD /* runTimeVC.m */,
+				AA1379B12563AF3000479FAD /* runTimeVC.xib */,
+				AAB175922563CA8200335F73 /* TestModel.h */,
+				AAB175932563CA8200335F73 /* TestModel.m */,
+			);
+			path = "runTime(运行时)";
+			sourceTree = "<group>";
+		};
 		AA2CC2D02558F55F0008D960 /* ChangeFont(自定义字体) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1062,6 +1082,7 @@
 				C14E58371E9CC0D600A44BDA /* AppDelegate.m */,
 				C14E58391E9CC0D600A44BDA /* ViewController.h */,
 				C14E583A1E9CC0D600A44BDA /* ViewController.m */,
+				AA1379AE2563AEFB00479FAD /* runTime(运行时) */,
 				AAF0995A255BCB3500CFBACE /* blockTest(block学习) */,
 				AA2CC2D02558F55F0008D960 /* ChangeFont(自定义字体) */,
 				AA58CE342546DB0A00096ACA /* BlindAnimation(百叶窗) */,
@@ -1593,6 +1614,7 @@
 				C11B50A822EAF8A000510E72 /* whiteplaceholder.png in Resources */,
 				AA58CE332546D4F400096ACA /* VCViewSetAlertView.xib in Resources */,
 				AA58CE152546CABC00096ACA /* CallNumberVC.xib in Resources */,
+				AA1379B32563AF3100479FAD /* runTimeVC.xib in Resources */,
 				AAF4FEC925416718000404CC /* DynamicMethodVC.xib in Resources */,
 				AAF0995F255BCB6400CFBACE /* BlockTestViewController.xib in Resources */,
 				C14E583E1E9CC0D600A44BDA /* Main.storyboard in Resources */,
@@ -1615,6 +1637,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA1379B22563AF3100479FAD /* runTimeVC.m in Sources */,
 				C11B50AF22EAF8BF00510E72 /* HZImagesGroupView.m in Sources */,
 				C14E594E1E9F8D9B00A44BDA /* UIButton+AFNetworking.m in Sources */,
 				C1BFF47D24C8471800714A98 /* SDWebImageTransition.m in Sources */,
@@ -1783,6 +1806,7 @@
 				AA2CC2D42558F58B0008D960 /* ChangeFontVC.m in Sources */,
 				C11B513222EAFDA000510E72 /* YYTextUtilities.m in Sources */,
 				C11B513722EAFDA000510E72 /* UIView+YYText.m in Sources */,
+				AAB175942563CA8200335F73 /* TestModel.m in Sources */,
 				C1BB64AF1F320A4B00546C02 /* NSObject+MJClass.m in Sources */,
 				C14E59481E9F8D9B00A44BDA /* AFURLResponseSerialization.m in Sources */,
 				AA58CE262546CDE200096ACA /* PickImageVC.m in Sources */,

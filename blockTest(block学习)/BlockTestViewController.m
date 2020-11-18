@@ -9,6 +9,7 @@
 #import "BlockTestViewController.h"
 
 
+
 @interface CaculateMaker : NSObject
 
 @property (nonatomic, assign) CGFloat result;
@@ -50,6 +51,11 @@ NSInteger num4 = 3000;
     [self.view addSubview:btn];
 }
 - (void)btnAction{
+    NSLog(@"self ' class is %@", [self class]);
+    NSLog(@"super' class is %@", [super class]);
+    
+
+    
 //    1、局部变量截获 是值截获
     NSInteger num = 3;
     NSInteger(^block)(NSInteger) = ^NSInteger(NSInteger n){
@@ -88,13 +94,13 @@ NSInteger num4 = 3000;
         NSLog(@"%zd",num4);//全局变量
         NSLog(@"%zd",num5);//__block修饰变量
     };
+    num5 = 2800;
     block3();
     
     
     CaculateMaker *maker = [[CaculateMaker alloc] init];
     maker.add(20).add(30);
     NSLog(@"%f",maker.result);
-
 }
 
 @end

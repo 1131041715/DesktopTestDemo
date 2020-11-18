@@ -35,8 +35,8 @@
     [btn addTarget:self action:@selector(btnAction:) forControlEvents:(UIControlEventTouchUpInside)];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.dataArr = @[@"数组字符串数据处理",@"动态方法调用",@"车牌键盘",@"加载转圈",@"历史记录展示",@"图片浏览",@"label搜索条件展示",@"不限制内容弹窗提示",@"tab弹窗单选",@"keep动画",@"日历自定义",@"控制连续跳转返回",@"文字滚动",@"涂鸦测试",@"图片旋转",@"打电话方式",@"改变系统弹窗字体颜色",@"简单加载转圈",@"照片选择",@"控制器视图设置为弹窗",@"照片选择上传",@"百叶窗",@"自定义字体",@"block学习"];
-    self.controlArr = @[@"ArrayHandelVC",@"DynamicMethodVC",@"LicensePlateVC",@"LoadingViewVC",@"HistoryVC",@"ImagebrowseVC",@"SelectLabelShowVC",@"ANPopoverVC",@"TabAloneSelectVC",@"KeepLaunchAnimationVC",@"CalendarCustomVC",@"alertviewViewController",@"LabelScrlllVC",@"ScrawlViewController",@"ImagRotateVC",@"CallNumberVC",@"ChangesystemalertviewVC",@"TestLoadingRotateVC",@"PickImageVC",@"VCViewSetAlertView",@"imagePickerViewController",@"BlindAnimationVC",@"ChangeFontVC",@"BlockTestViewController"];
+    self.dataArr = @[@"数组字符串数据处理",@"动态方法调用",@"车牌键盘",@"加载转圈",@"历史记录展示",@"图片浏览",@"label搜索条件展示",@"不限制内容弹窗提示",@"tab弹窗单选",@"keep动画",@"日历自定义",@"控制连续跳转返回",@"文字滚动",@"涂鸦测试",@"图片旋转",@"打电话方式",@"改变系统弹窗字体颜色",@"简单加载转圈",@"照片选择",@"控制器视图设置为弹窗",@"照片选择上传",@"百叶窗",@"自定义字体",@"block学习",@"runTime学习"];
+    self.controlArr = @[@"ArrayHandelVC",@"DynamicMethodVC",@"LicensePlateVC",@"LoadingViewVC",@"HistoryVC",@"ImagebrowseVC",@"SelectLabelShowVC",@"ANPopoverVC",@"TabAloneSelectVC",@"KeepLaunchAnimationVC",@"CalendarCustomVC",@"alertviewViewController",@"LabelScrlllVC",@"ScrawlViewController",@"ImagRotateVC",@"CallNumberVC",@"ChangesystemalertviewVC",@"TestLoadingRotateVC",@"PickImageVC",@"VCViewSetAlertView",@"imagePickerViewController",@"BlindAnimationVC",@"ChangeFontVC",@"BlockTestViewController",@"runTimeVC"];
     self.title = @"首页";
     [self.view addSubview:self.tableView];
 }
