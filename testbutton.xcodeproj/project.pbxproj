@@ -9,10 +9,31 @@
 /* Begin PBXBuildFile section */
 		AA1379B22563AF3100479FAD /* runTimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1379B02563AF3000479FAD /* runTimeVC.m */; };
 		AA1379B32563AF3100479FAD /* runTimeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA1379B12563AF3000479FAD /* runTimeVC.xib */; };
+		AA1F4E9F2567B97100BB5FB0 /* CoreAnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1F4E9D2567B97100BB5FB0 /* CoreAnimationVC.m */; };
+		AA1F4EA02567B97100BB5FB0 /* CoreAnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA1F4E9E2567B97100BB5FB0 /* CoreAnimationVC.xib */; };
+		AA1F4EA32567BA9F00BB5FB0 /* PictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1F4EA12567BA9E00BB5FB0 /* PictureView.m */; };
+		AA29456B256C968C00319B27 /* PlanetaryrotationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA294569256C968C00319B27 /* PlanetaryrotationVC.m */; };
+		AA29456C256C968C00319B27 /* PlanetaryrotationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA29456A256C968C00319B27 /* PlanetaryrotationVC.xib */; };
+		AA29456F256C96D800319B27 /* PlanetRotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA29456E256C96D800319B27 /* PlanetRotationView.m */; };
+		AA294572256C9D2800319B27 /* PRpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = AA294571256C9D2800319B27 /* PRpoint.m */; };
+		AA2945BD256CF2D300319B27 /* 1_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945AA256CF2D300319B27 /* 1_roat.png */; };
+		AA2945C2256CF2D300319B27 /* 0_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945AF256CF2D300319B27 /* 0_roat.png */; };
+		AA2945C3256CF2D300319B27 /* 2_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945B0256CF2D300319B27 /* 2_roat.png */; };
+		AA2945C4256CF2D300319B27 /* 3_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945B1256CF2D300319B27 /* 3_roat.png */; };
+		AA2945C6256CF2D300319B27 /* 4_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945B3256CF2D300319B27 /* 4_roat.png */; };
+		AA2945C9256CF2D300319B27 /* 5_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945B6256CF2D300319B27 /* 5_roat.png */; };
+		AA2945CA256CF2D300319B27 /* 6_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945B7256CF2D300319B27 /* 6_roat.png */; };
+		AA2945CB256CF2D300319B27 /* 7_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945B8256CF2D300319B27 /* 7_roat.png */; };
+		AA2945CC256CF2D300319B27 /* 8_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945B9256CF2D300319B27 /* 8_roat.png */; };
+		AA2945CD256CF2D300319B27 /* 9_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945BA256CF2D300319B27 /* 9_roat.png */; };
+		AA2945CE256CF2D300319B27 /* 10_roat.png in Resources */ = {isa = PBXBuildFile; fileRef = AA2945BB256CF2D300319B27 /* 10_roat.png */; };
+		AA2945D4256D0B6D00319B27 /* UIView+PRpointView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2945D3256D0B6D00319B27 /* UIView+PRpointView.m */; };
 		AA2CC2CF2558F51B0008D960 /* loveway.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA2CC2CE2558F51B0008D960 /* loveway.ttf */; };
 		AA2CC2D42558F58B0008D960 /* ChangeFontVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2CC2D22558F58B0008D960 /* ChangeFontVC.m */; };
 		AA2CC2D52558F58B0008D960 /* ChangeFontVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2CC2D32558F58B0008D960 /* ChangeFontVC.xib */; };
 		AA2CC2D8255912C60008D960 /* UILabel+FontChange.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2CC2D6255912C60008D960 /* UILabel+FontChange.m */; };
+		AA38717225661BC8002B5B68 /* scroAndTabVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA38717025661BC8002B5B68 /* scroAndTabVC.m */; };
+		AA38717325661BC8002B5B68 /* scroAndTabVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA38717125661BC8002B5B68 /* scroAndTabVC.xib */; };
 		AA58CE0E2546C59200096ACA /* ImagRotateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE0C2546C59200096ACA /* ImagRotateVC.m */; };
 		AA58CE0F2546C59200096ACA /* ImagRotateVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE0D2546C59200096ACA /* ImagRotateVC.xib */; };
 		AA58CE142546CABC00096ACA /* CallNumberVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE122546CABC00096ACA /* CallNumberVC.m */; };
@@ -33,6 +54,7 @@
 		AA58CE3E2546DBA500096ACA /* BlindAnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA58CE3C2546DBA500096ACA /* BlindAnimationVC.xib */; };
 		AA58CE432546DBB700096ACA /* ToolUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE412546DBB700096ACA /* ToolUnit.m */; };
 		AA58CE442546DBB700096ACA /* BlindUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA58CE422546DBB700096ACA /* BlindUnit.m */; };
+		AA622855256B6B660053FBB1 /* transform3DRotate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA622854256B6B660053FBB1 /* transform3DRotate.m */; };
 		AAB175942563CA8200335F73 /* TestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB175932563CA8200335F73 /* TestModel.m */; };
 		AAF0995E255BCB6400CFBACE /* BlockTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAF0995C255BCB6400CFBACE /* BlockTestViewController.m */; };
 		AAF0995F255BCB6400CFBACE /* BlockTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAF0995D255BCB6400CFBACE /* BlockTestViewController.xib */; };
@@ -233,12 +255,40 @@
 		AA1379AF2563AF3000479FAD /* runTimeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = runTimeVC.h; sourceTree = "<group>"; };
 		AA1379B02563AF3000479FAD /* runTimeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = runTimeVC.m; sourceTree = "<group>"; };
 		AA1379B12563AF3000479FAD /* runTimeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = runTimeVC.xib; sourceTree = "<group>"; };
+		AA1F4E9C2567B97100BB5FB0 /* CoreAnimationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreAnimationVC.h; sourceTree = "<group>"; };
+		AA1F4E9D2567B97100BB5FB0 /* CoreAnimationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreAnimationVC.m; sourceTree = "<group>"; };
+		AA1F4E9E2567B97100BB5FB0 /* CoreAnimationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoreAnimationVC.xib; sourceTree = "<group>"; };
+		AA1F4EA12567BA9E00BB5FB0 /* PictureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PictureView.m; sourceTree = "<group>"; };
+		AA1F4EA22567BA9E00BB5FB0 /* PictureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PictureView.h; sourceTree = "<group>"; };
+		AA294568256C968C00319B27 /* PlanetaryrotationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanetaryrotationVC.h; sourceTree = "<group>"; };
+		AA294569256C968C00319B27 /* PlanetaryrotationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanetaryrotationVC.m; sourceTree = "<group>"; };
+		AA29456A256C968C00319B27 /* PlanetaryrotationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanetaryrotationVC.xib; sourceTree = "<group>"; };
+		AA29456D256C96D800319B27 /* PlanetRotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlanetRotationView.h; sourceTree = "<group>"; };
+		AA29456E256C96D800319B27 /* PlanetRotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlanetRotationView.m; sourceTree = "<group>"; };
+		AA294570256C9D2800319B27 /* PRpoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PRpoint.h; sourceTree = "<group>"; };
+		AA294571256C9D2800319B27 /* PRpoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PRpoint.m; sourceTree = "<group>"; };
+		AA2945AA256CF2D300319B27 /* 1_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1_roat.png; sourceTree = "<group>"; };
+		AA2945AF256CF2D300319B27 /* 0_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0_roat.png; sourceTree = "<group>"; };
+		AA2945B0256CF2D300319B27 /* 2_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2_roat.png; sourceTree = "<group>"; };
+		AA2945B1256CF2D300319B27 /* 3_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3_roat.png; sourceTree = "<group>"; };
+		AA2945B3256CF2D300319B27 /* 4_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4_roat.png; sourceTree = "<group>"; };
+		AA2945B6256CF2D300319B27 /* 5_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5_roat.png; sourceTree = "<group>"; };
+		AA2945B7256CF2D300319B27 /* 6_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6_roat.png; sourceTree = "<group>"; };
+		AA2945B8256CF2D300319B27 /* 7_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7_roat.png; sourceTree = "<group>"; };
+		AA2945B9256CF2D300319B27 /* 8_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8_roat.png; sourceTree = "<group>"; };
+		AA2945BA256CF2D300319B27 /* 9_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 9_roat.png; sourceTree = "<group>"; };
+		AA2945BB256CF2D300319B27 /* 10_roat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 10_roat.png; sourceTree = "<group>"; };
+		AA2945D2256D0B6D00319B27 /* UIView+PRpointView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+PRpointView.h"; sourceTree = "<group>"; };
+		AA2945D3256D0B6D00319B27 /* UIView+PRpointView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+PRpointView.m"; sourceTree = "<group>"; };
 		AA2CC2CE2558F51B0008D960 /* loveway.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = loveway.ttf; sourceTree = "<group>"; };
 		AA2CC2D12558F58B0008D960 /* ChangeFontVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeFontVC.h; sourceTree = "<group>"; };
 		AA2CC2D22558F58B0008D960 /* ChangeFontVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeFontVC.m; sourceTree = "<group>"; };
 		AA2CC2D32558F58B0008D960 /* ChangeFontVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeFontVC.xib; sourceTree = "<group>"; };
 		AA2CC2D6255912C60008D960 /* UILabel+FontChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FontChange.m"; sourceTree = "<group>"; };
 		AA2CC2D7255912C60008D960 /* UILabel+FontChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+FontChange.h"; sourceTree = "<group>"; };
+		AA38716F25661BC8002B5B68 /* scroAndTabVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scroAndTabVC.h; sourceTree = "<group>"; };
+		AA38717025661BC8002B5B68 /* scroAndTabVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = scroAndTabVC.m; sourceTree = "<group>"; };
+		AA38717125661BC8002B5B68 /* scroAndTabVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = scroAndTabVC.xib; sourceTree = "<group>"; };
 		AA58CE0B2546C59200096ACA /* ImagRotateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagRotateVC.h; sourceTree = "<group>"; };
 		AA58CE0C2546C59200096ACA /* ImagRotateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagRotateVC.m; sourceTree = "<group>"; };
 		AA58CE0D2546C59200096ACA /* ImagRotateVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagRotateVC.xib; sourceTree = "<group>"; };
@@ -269,6 +319,8 @@
 		AA58CE402546DBB700096ACA /* ToolUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolUnit.h; sourceTree = "<group>"; };
 		AA58CE412546DBB700096ACA /* ToolUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolUnit.m; sourceTree = "<group>"; };
 		AA58CE422546DBB700096ACA /* BlindUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlindUnit.m; sourceTree = "<group>"; };
+		AA622853256B6B660053FBB1 /* transform3DRotate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transform3DRotate.h; sourceTree = "<group>"; };
+		AA622854256B6B660053FBB1 /* transform3DRotate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = transform3DRotate.m; sourceTree = "<group>"; };
 		AAB175922563CA8200335F73 /* TestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestModel.h; sourceTree = "<group>"; };
 		AAB175932563CA8200335F73 /* TestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestModel.m; sourceTree = "<group>"; };
 		AAF0995B255BCB6400CFBACE /* BlockTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockTestViewController.h; sourceTree = "<group>"; };
@@ -671,6 +723,55 @@
 			path = "runTime(运行时)";
 			sourceTree = "<group>";
 		};
+		AA1F4E9B2567B93600BB5FB0 /* CoreAnimation(动画) */ = {
+			isa = PBXGroup;
+			children = (
+				AA1F4E9C2567B97100BB5FB0 /* CoreAnimationVC.h */,
+				AA1F4E9D2567B97100BB5FB0 /* CoreAnimationVC.m */,
+				AA1F4E9E2567B97100BB5FB0 /* CoreAnimationVC.xib */,
+				AA1F4EA22567BA9E00BB5FB0 /* PictureView.h */,
+				AA1F4EA12567BA9E00BB5FB0 /* PictureView.m */,
+				AA622853256B6B660053FBB1 /* transform3DRotate.h */,
+				AA622854256B6B660053FBB1 /* transform3DRotate.m */,
+			);
+			path = "CoreAnimation(动画)";
+			sourceTree = "<group>";
+		};
+		AA294567256C966000319B27 /* Planetaryrotation(行星转动) */ = {
+			isa = PBXGroup;
+			children = (
+				AA294568256C968C00319B27 /* PlanetaryrotationVC.h */,
+				AA294569256C968C00319B27 /* PlanetaryrotationVC.m */,
+				AA29456A256C968C00319B27 /* PlanetaryrotationVC.xib */,
+				AA29456D256C96D800319B27 /* PlanetRotationView.h */,
+				AA29456E256C96D800319B27 /* PlanetRotationView.m */,
+				AA294570256C9D2800319B27 /* PRpoint.h */,
+				AA294571256C9D2800319B27 /* PRpoint.m */,
+				AA2945D2256D0B6D00319B27 /* UIView+PRpointView.h */,
+				AA2945D3256D0B6D00319B27 /* UIView+PRpointView.m */,
+				AA2945A8256CF2D300319B27 /* drawable */,
+			);
+			path = "Planetaryrotation(行星转动)";
+			sourceTree = "<group>";
+		};
+		AA2945A8256CF2D300319B27 /* drawable */ = {
+			isa = PBXGroup;
+			children = (
+				AA2945AF256CF2D300319B27 /* 0_roat.png */,
+				AA2945AA256CF2D300319B27 /* 1_roat.png */,
+				AA2945B0256CF2D300319B27 /* 2_roat.png */,
+				AA2945B1256CF2D300319B27 /* 3_roat.png */,
+				AA2945B3256CF2D300319B27 /* 4_roat.png */,
+				AA2945B6256CF2D300319B27 /* 5_roat.png */,
+				AA2945B7256CF2D300319B27 /* 6_roat.png */,
+				AA2945B8256CF2D300319B27 /* 7_roat.png */,
+				AA2945B9256CF2D300319B27 /* 8_roat.png */,
+				AA2945BA256CF2D300319B27 /* 9_roat.png */,
+				AA2945BB256CF2D300319B27 /* 10_roat.png */,
+			);
+			path = drawable;
+			sourceTree = "<group>";
+		};
 		AA2CC2D02558F55F0008D960 /* ChangeFont(自定义字体) */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,6 +782,16 @@
 				AA2CC2D6255912C60008D960 /* UILabel+FontChange.m */,
 			);
 			path = "ChangeFont(自定义字体)";
+			sourceTree = "<group>";
+		};
+		AA38716E25661B7F002B5B68 /* scroAndTab(scro上添加tab滑动测试) */ = {
+			isa = PBXGroup;
+			children = (
+				AA38716F25661BC8002B5B68 /* scroAndTabVC.h */,
+				AA38717025661BC8002B5B68 /* scroAndTabVC.m */,
+				AA38717125661BC8002B5B68 /* scroAndTabVC.xib */,
+			);
+			path = "scroAndTab(scro上添加tab滑动测试)";
 			sourceTree = "<group>";
 		};
 		AA58CE0A2546C56A00096ACA /* imagRotate(图片旋转) */ = {
@@ -1082,6 +1193,9 @@
 				C14E58371E9CC0D600A44BDA /* AppDelegate.m */,
 				C14E58391E9CC0D600A44BDA /* ViewController.h */,
 				C14E583A1E9CC0D600A44BDA /* ViewController.m */,
+				AA294567256C966000319B27 /* Planetaryrotation(行星转动) */,
+				AA1F4E9B2567B93600BB5FB0 /* CoreAnimation(动画) */,
+				AA38716E25661B7F002B5B68 /* scroAndTab(scro上添加tab滑动测试) */,
 				AA1379AE2563AEFB00479FAD /* runTime(运行时) */,
 				AAF0995A255BCB3500CFBACE /* blockTest(block学习) */,
 				AA2CC2D02558F55F0008D960 /* ChangeFont(自定义字体) */,
@@ -1559,7 +1673,7 @@
 				TargetAttributes = {
 					C14E582F1E9CC0D600A44BDA = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 4M79749WR3;
+						DevelopmentTeam = NX494TD8NT;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1587,11 +1701,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA2945C9256CF2D300319B27 /* 5_roat.png in Resources */,
 				C14E58431E9CC0D600A44BDA /* LaunchScreen.storyboard in Resources */,
 				C15EB2281F32117600FAF828 /* werty.plist in Resources */,
+				AA2945C2256CF2D300319B27 /* 0_roat.png in Resources */,
+				AA1F4EA02567B97100BB5FB0 /* CoreAnimationVC.xib in Resources */,
 				AAF4FED525416BE9000404CC /* LoadingViewVC.xib in Resources */,
 				AA58CE3E2546DBA500096ACA /* BlindAnimationVC.xib in Resources */,
 				C1260B9021ABD4EE00683F94 /* qwas.png in Resources */,
+				AA38717325661BC8002B5B68 /* scroAndTabVC.xib in Resources */,
 				C1F1E6FD1FC52AA500D42149 /* rp.png in Resources */,
 				AAF4FEDB254170E2000404CC /* HistoryVC.xib in Resources */,
 				C14A9B7E22C4F50F0015ED94 /* icon_previous@2x.png in Resources */,
@@ -1599,6 +1717,9 @@
 				C142FB0C1EBC51CA00649356 /* 22.gif in Resources */,
 				AAF4FEF925417B1C000404CC /* CalendarCustomVC.xib in Resources */,
 				AA58CE1B2546CB9F00096ACA /* ChangesystemalertviewVC.xib in Resources */,
+				AA2945C4256CF2D300319B27 /* 3_roat.png in Resources */,
+				AA2945CA256CF2D300319B27 /* 6_roat.png in Resources */,
+				AA2945CC256CF2D300319B27 /* 8_roat.png in Resources */,
 				AA58CE272546CDE200096ACA /* PickImageVC.xib in Resources */,
 				C14FF646231F970600169052 /* keep.mp4 in Resources */,
 				C11B513A22EAFDA000510E72 /* README.md in Resources */,
@@ -1607,13 +1728,19 @@
 				C14E584E1E9CC12F00A44BDA /* 1.png in Resources */,
 				C1CEFD9D21F04E510078B91D /* tabViewSelectTableViewCell.xib in Resources */,
 				C14E58401E9CC0D600A44BDA /* Assets.xcassets in Resources */,
+				AA2945CE256CF2D300319B27 /* 10_roat.png in Resources */,
+				AA29456C256C968C00319B27 /* PlanetaryrotationVC.xib in Resources */,
 				AAF4FEF325417716000404CC /* KeepLaunchAnimationVC.xib in Resources */,
 				C14E595A1EA07AF000A44BDA /* loading.gif in Resources */,
+				AA2945C3256CF2D300319B27 /* 2_roat.png in Resources */,
 				C18C8FCF21D35C9F00CCC9FB /* carTop.png in Resources */,
 				AAF4FF0025418435000404CC /* LabelScrlllVC.xib in Resources */,
+				AA2945C6256CF2D300319B27 /* 4_roat.png in Resources */,
+				AA2945BD256CF2D300319B27 /* 1_roat.png in Resources */,
 				C11B50A822EAF8A000510E72 /* whiteplaceholder.png in Resources */,
 				AA58CE332546D4F400096ACA /* VCViewSetAlertView.xib in Resources */,
 				AA58CE152546CABC00096ACA /* CallNumberVC.xib in Resources */,
+				AA2945CD256CF2D300319B27 /* 9_roat.png in Resources */,
 				AA1379B32563AF3100479FAD /* runTimeVC.xib in Resources */,
 				AAF4FEC925416718000404CC /* DynamicMethodVC.xib in Resources */,
 				AAF0995F255BCB6400CFBACE /* BlockTestViewController.xib in Resources */,
@@ -1626,6 +1753,7 @@
 				C14C465B1FC2884E000895F6 /* M_sousuokuang.png in Resources */,
 				AA2CC2D52558F58B0008D960 /* ChangeFontVC.xib in Resources */,
 				AA58CE2D2546D25600096ACA /* TextVHeigthCustomVC.xib in Resources */,
+				AA2945CB256CF2D300319B27 /* 7_roat.png in Resources */,
 				AAF4FEED25417617000404CC /* TabAloneSelectVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1643,6 +1771,7 @@
 				C1BFF47D24C8471800714A98 /* SDWebImageTransition.m in Sources */,
 				AAF4FEF825417B1C000404CC /* CalendarCustomVC.m in Sources */,
 				C11B50E722EAFD3D00510E72 /* FSLoopScrollView.m in Sources */,
+				AA29456F256C96D800319B27 /* PlanetRotationView.m in Sources */,
 				C1BFF47424C8471800714A98 /* UIImage+MultiFormat.m in Sources */,
 				C1BFF48524C8471800714A98 /* SDWebImageImageIOCoder.m in Sources */,
 				C11B512A22EAFDA000510E72 /* YYTextKeyboardManager.m in Sources */,
@@ -1683,9 +1812,11 @@
 				C11B512E22EAFDA000510E72 /* YYTextParser.m in Sources */,
 				C1BB64AE1F320A4B00546C02 /* MJPropertyType.m in Sources */,
 				C1CA262624AC6D9A006F47D3 /* MASConstraint.m in Sources */,
+				AA38717225661BC8002B5B68 /* scroAndTabVC.m in Sources */,
 				C14E59511E9F8D9B00A44BDA /* UIRefreshControl+AFNetworking.m in Sources */,
 				AAF4FEF225417716000404CC /* KeepLaunchAnimationVC.m in Sources */,
 				AA58CE432546DBB700096ACA /* ToolUnit.m in Sources */,
+				AA1F4E9F2567B97100BB5FB0 /* CoreAnimationVC.m in Sources */,
 				AAF4FECE2541683B000404CC /* LicensePlateVC.m in Sources */,
 				C11B512722EAFDA000510E72 /* YYTextLayout.m in Sources */,
 				C14E58D11E9F4EF000A44BDA /* LGAlertViewWindow.m in Sources */,
@@ -1709,6 +1840,7 @@
 				C1BFF47C24C8471800714A98 /* SDWebImageDownloaderOperation.m in Sources */,
 				AAF4FEEC25417617000404CC /* TabAloneSelectVC.m in Sources */,
 				C15048A722B75209003613F5 /* MyTableController.m in Sources */,
+				AA294572256C9D2800319B27 /* PRpoint.m in Sources */,
 				C1BFF47824C8471800714A98 /* SDWebImageCoder.m in Sources */,
 				C11B513022EAFDA000510E72 /* YYTextArchiver.m in Sources */,
 				AA58CE442546DBB700096ACA /* BlindUnit.m in Sources */,
@@ -1735,8 +1867,10 @@
 				C11B512D22EAFDA000510E72 /* YYTextRunDelegate.m in Sources */,
 				C15048A822B75209003613F5 /* LXBasicController.m in Sources */,
 				C14E58CB1E9F4EF000A44BDA /* LGAlertViewButton.m in Sources */,
+				AA1F4EA32567BA9F00BB5FB0 /* PictureView.m in Sources */,
 				AAF4FEE0254172D7000404CC /* ImagebrowseVC.m in Sources */,
 				C11B50A922EAF8A000510E72 /* HZPhotoBrowser.m in Sources */,
+				AA29456B256C968C00319B27 /* PlanetaryrotationVC.m in Sources */,
 				C11B512622EAFDA000510E72 /* YYTextInput.m in Sources */,
 				C1BFF46D24C8471800714A98 /* SDWebImageDecoder.m in Sources */,
 				C14E59451E9F8D9B00A44BDA /* AFNetworkReachabilityManager.m in Sources */,
@@ -1782,6 +1916,7 @@
 				C14E58D31E9F4EF000A44BDA /* LGAlertViewWindowsObserver.m in Sources */,
 				AAF4FEFF25418435000404CC /* LabelScrlllVC.m in Sources */,
 				AAF4FEDA254170E2000404CC /* HistoryVC.m in Sources */,
+				AA622855256B6B660053FBB1 /* transform3DRotate.m in Sources */,
 				C14E58D01E9F4EF000A44BDA /* LGAlertViewTextField.m in Sources */,
 				C1BFF47E24C8471800714A98 /* NSData+ImageContentType.m in Sources */,
 				C11B50E822EAFD3D00510E72 /* NSTimer+FSLoop.m in Sources */,
@@ -1796,6 +1931,7 @@
 				C14E59611EA0957A00A44BDA /* YFGIFImageView.m in Sources */,
 				C1CA262424AC6D9A006F47D3 /* NSArray+MASAdditions.m in Sources */,
 				C11B512C22EAFDA000510E72 /* YYLabel.m in Sources */,
+				AA2945D4256D0B6D00319B27 /* UIView+PRpointView.m in Sources */,
 				AAF4FEE6254174FF000404CC /* ANPopoverVC.m in Sources */,
 				C14E58CA1E9F4EF000A44BDA /* LGAlertView.m in Sources */,
 				C14E59521E9F8D9B00A44BDA /* UIWebView+AFNetworking.m in Sources */,
@@ -1959,7 +2095,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M79749WR3;
+				DEVELOPMENT_TEAM = NX494TD8NT;
 				GCC_PREFIX_HEADER = testbutton/HeadTest.pch;
 				INFOPLIST_FILE = testbutton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1980,7 +2116,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M79749WR3;
+				DEVELOPMENT_TEAM = NX494TD8NT;
 				GCC_PREFIX_HEADER = testbutton/HeadTest.pch;
 				INFOPLIST_FILE = testbutton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
