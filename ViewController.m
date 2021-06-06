@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSArray *dataArr;
 @property (nonatomic, strong) NSArray *controlArr;
 
+@property (nonatomic, strong) void (^textBlcok)(void );
 @end
 
 @implementation ViewController
@@ -35,10 +36,22 @@
     [btn addTarget:self action:@selector(btnAction:) forControlEvents:(UIControlEventTouchUpInside)];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.dataArr = @[@"行星转动",@"炫酷动画",@"数组字符串数据处理",@"动态方法调用",@"车牌键盘",@"加载转圈",@"历史记录展示",@"图片浏览",@"label搜索条件展示",@"不限制内容弹窗提示",@"tab弹窗单选",@"keep动画",@"日历自定义",@"控制连续跳转返回",@"文字滚动",@"涂鸦测试",@"图片旋转",@"打电话方式",@"改变系统弹窗字体颜色",@"简单加载转圈",@"照片选择",@"控制器视图设置为弹窗",@"照片选择上传",@"百叶窗",@"自定义字体",@"block学习",@"runTime学习",@"scro上添加tab滑动测试"];
-    self.controlArr = @[@"PlanetaryrotationVC",@"CoreAnimationVC",@"ArrayHandelVC",@"DynamicMethodVC",@"LicensePlateVC",@"LoadingViewVC",@"HistoryVC",@"ImagebrowseVC",@"SelectLabelShowVC",@"ANPopoverVC",@"TabAloneSelectVC",@"KeepLaunchAnimationVC",@"CalendarCustomVC",@"alertviewViewController",@"LabelScrlllVC",@"ScrawlViewController",@"ImagRotateVC",@"CallNumberVC",@"ChangesystemalertviewVC",@"TestLoadingRotateVC",@"PickImageVC",@"VCViewSetAlertView",@"imagePickerViewController",@"BlindAnimationVC",@"ChangeFontVC",@"BlockTestViewController",@"runTimeVC",@"scroAndTabVC"];
+    self.dataArr = @[@"CALayer和动画学习",@"行星转动",@"炫酷动画",@"数组字符串数据处理",@"动态方法调用",@"车牌键盘",@"加载转圈",@"历史记录展示",@"图片浏览",@"label搜索条件展示",@"不限制内容弹窗提示",@"tab弹窗单选",@"keep动画",@"日历自定义",@"控制连续跳转返回",@"文字滚动",@"涂鸦测试",@"图片旋转",@"打电话方式",@"改变系统弹窗字体颜色",@"简单加载转圈",@"照片选择",@"控制器视图设置为弹窗",@"照片选择上传",@"百叶窗",@"自定义字体",@"block学习",@"runTime学习",@"scro上添加tab滑动测试"];
+    self.controlArr = @[@"CaAayerAndCoreAnimationVC",@"PlanetaryrotationVC",@"CoreAnimationVC",@"ArrayHandelVC",@"DynamicMethodVC",@"LicensePlateVC",@"LoadingViewVC",@"HistoryVC",@"ImagebrowseVC",@"SelectLabelShowVC",@"ANPopoverVC",@"TabAloneSelectVC",@"KeepLaunchAnimationVC",@"CalendarCustomVC",@"alertviewViewController",@"LabelScrlllVC",@"ScrawlViewController",@"ImagRotateVC",@"CallNumberVC",@"ChangesystemalertviewVC",@"TestLoadingRotateVC",@"PickImageVC",@"VCViewSetAlertView",@"imagePickerViewController",@"BlindAnimationVC",@"ChangeFontVC",@"BlockTestViewController",@"runTimeVC",@"scroAndTabVC"];
     self.title = @"首页";
     [self.view addSubview:self.tableView];
+    
+    
+//    __weak typeof(self) weekSelf = self;
+//    NSTimer *textBlcokTime = [NSTimer scheduledTimerWithTimeInterval:(0.3) repeats:YES block:^(NSTimer * _Nonnull timer) {
+//        self.textBlcok();
+//    }];
+//    
+//    [[NSRunLoop mainRunLoop] addTimer:textBlcokTime forMode:NSRunLoopCommonModes];
+//    
+//    [self setTextBlcok:^{
+//        NSLog(@"~~~~~~");
+//    }];
 }
 
 

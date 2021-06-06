@@ -114,7 +114,7 @@ typedef NS_ENUM(NSInteger, GestureRecognizerDirection) {
             view.center = tmpP.pCenter;
             view.transform = CGAffineTransformMakeScale(index * 0.1 + 0.1, index * 0.1 + 0.1);
         }else{
-            [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            [UIView animateWithDuration:self.rotaduration delay:0.0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
                 view.center = tmpP.pCenter;
                 view.transform = CGAffineTransformMakeScale(index * 0.1 + 0.1, index * 0.1 + 0.1);
             } completion:^(BOOL finished) {
